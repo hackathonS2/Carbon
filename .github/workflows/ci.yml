@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request: ~
+  workflow_dispatch: ~
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pull images
+        run: docker compose pull --ignore-pull-failures || true
+      - name: Start services
+        run: docker compose up --build -d
+      - name: Wait for services
+        run: |
+          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker compose ps -q php)")"; do
+            case $status in
+              starting) sleep 1;;
+              healthy) exit 0;;
+              unhealthy)
+                docker compose ps
+                docker compose logs
+                exit 1
+              ;;
+            esac
+          done
+          exit 1
+      - name: Create test database
+        run: |
+          docker compose exec php bin/console make:mig
+          docker compose exec php bin/console d:m:m 
+          docker compose exec php bin/console d:f:l --no-interaction
+      - name: Doctrine Schema Validator
+        run: docker compose exec -T php bin/console doctrine:schema:validate --skip-sync
