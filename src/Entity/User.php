@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -69,6 +71,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(nullable: true)]
     private ?int $evalClient = null;
+
+    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: TestResults::class, orphanRemoval: true)]
+    private Collection $testResults;
+
+    public function __construct()
+    {
+        $this->testResults = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -292,6 +302,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEvalClient(?int $evalClient): self
     {
         $this->evalClient = $evalClient;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TestResults>
+     */
+    public function getTestResults(): Collection
+    {
+        return $this->testResults;
+    }
+
+    public function addTestResult(TestResults $testResult): self
+    {
+        if (!$this->testResults->contains($testResult)) {
+            $this->testResults->add($testResult);
+            $testResult->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTestResult(TestResults $testResult): self
+    {
+        if ($this->testResults->removeElement($testResult)) {
+            // set the owning side to null (unless already changed)
+            if ($testResult->getIdUser() === $this) {
+                $testResult->setIdUser(null);
+            }
+        }
 
         return $this;
     }
