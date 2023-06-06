@@ -98,6 +98,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->testResults = new ArrayCollection();
         $this->softSkills = new ArrayCollection();
         $this->indicateurTeches = new ArrayCollection();
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTimeImmutable());
+        }
+        $this->setUpdatedAt(new \DateTimeImmutable());
+
     }
 
     public function getId(): ?int
