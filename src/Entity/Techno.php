@@ -21,9 +21,13 @@ class Techno
     #[ORM\OneToMany(mappedBy: 'idTechno', targetEntity: Test::class)]
     private Collection $tests;
 
+    #[ORM\OneToMany(mappedBy: 'idTechno', targetEntity: IndicateurTech::class, orphanRemoval: true)]
+    private Collection $indicateurTeches;
+
     public function __construct()
     {
         $this->tests = new ArrayCollection();
+        $this->indicateurTeches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class Techno
             // set the owning side to null (unless already changed)
             if ($test->getIdTechno() === $this) {
                 $test->setIdTechno(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, IndicateurTech>
+     */
+    public function getIndicateurTeches(): Collection
+    {
+        return $this->indicateurTeches;
+    }
+
+    public function addIndicateurTech(IndicateurTech $indicateurTech): self
+    {
+        if (!$this->indicateurTeches->contains($indicateurTech)) {
+            $this->indicateurTeches->add($indicateurTech);
+            $indicateurTech->setIdTechno($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIndicateurTech(IndicateurTech $indicateurTech): self
+    {
+        if ($this->indicateurTeches->removeElement($indicateurTech)) {
+            // set the owning side to null (unless already changed)
+            if ($indicateurTech->getIdTechno() === $this) {
+                $indicateurTech->setIdTechno(null);
             }
         }
 

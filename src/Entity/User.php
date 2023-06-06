@@ -75,9 +75,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: TestResults::class, orphanRemoval: true)]
     private Collection $testResults;
 
+    #[ORM\Column(length: 1500, nullable: true)]
+    private ?string $linkLinkedin = null;
+
+    #[ORM\Column(length: 1500, nullable: true)]
+    private ?string $linkSlack = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $evalClientDev = null;
+
+    #[ORM\Column(length: 1000, nullable: true)]
+    private ?string $objectifMensuelCommercial = null;
+
+    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: SoftSkills::class, orphanRemoval: true)]
+    private Collection $softSkills;
+
+    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: IndicateurTech::class, orphanRemoval: true)]
+    private Collection $indicateurTeches;
+
     public function __construct()
     {
         $this->testResults = new ArrayCollection();
+        $this->softSkills = new ArrayCollection();
+        $this->indicateurTeches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -330,6 +350,114 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($testResult->getIdUser() === $this) {
                 $testResult->setIdUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getLinkLinkedin(): ?string
+    {
+        return $this->linkLinkedin;
+    }
+
+    public function setLinkLinkedin(?string $linkLinkedin): self
+    {
+        $this->linkLinkedin = $linkLinkedin;
+
+        return $this;
+    }
+
+    public function getLinkSlack(): ?string
+    {
+        return $this->linkSlack;
+    }
+
+    public function setLinkSlack(?string $linkSlack): self
+    {
+        $this->linkSlack = $linkSlack;
+
+        return $this;
+    }
+
+    public function getEvalClientDev(): ?int
+    {
+        return $this->evalClientDev;
+    }
+
+    public function setEvalClientDev(?int $evalClientDev): self
+    {
+        $this->evalClientDev = $evalClientDev;
+
+        return $this;
+    }
+
+    public function getObjectifMensuelCommercial(): ?string
+    {
+        return $this->objectifMensuelCommercial;
+    }
+
+    public function setObjectifMensuelCommercial(?string $objectifMensuelCommercial): self
+    {
+        $this->objectifMensuelCommercial = $objectifMensuelCommercial;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SoftSkills>
+     */
+    public function getSoftSkills(): Collection
+    {
+        return $this->softSkills;
+    }
+
+    public function addSoftSkill(SoftSkills $softSkill): self
+    {
+        if (!$this->softSkills->contains($softSkill)) {
+            $this->softSkills->add($softSkill);
+            $softSkill->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSoftSkill(SoftSkills $softSkill): self
+    {
+        if ($this->softSkills->removeElement($softSkill)) {
+            // set the owning side to null (unless already changed)
+            if ($softSkill->getIdUser() === $this) {
+                $softSkill->setIdUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, IndicateurTech>
+     */
+    public function getIndicateurTeches(): Collection
+    {
+        return $this->indicateurTeches;
+    }
+
+    public function addIndicateurTech(IndicateurTech $indicateurTech): self
+    {
+        if (!$this->indicateurTeches->contains($indicateurTech)) {
+            $this->indicateurTeches->add($indicateurTech);
+            $indicateurTech->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIndicateurTech(IndicateurTech $indicateurTech): self
+    {
+        if ($this->indicateurTeches->removeElement($indicateurTech)) {
+            // set the owning side to null (unless already changed)
+            if ($indicateurTech->getIdUser() === $this) {
+                $indicateurTech->setIdUser(null);
             }
         }
 
