@@ -179,6 +179,7 @@ class AppFixtures extends Fixture
             $mission = new Mission();
             $mission->setNom($this->faker->text(100));
             $mission->setDateDebut(new \DateTime('now'));
+            $mission->setDescription($this->faker->text(100));
             $mission->setDateFin(new \DateTime('now'));
             $mission->setMailClient($this->faker->email());
             $mission->setNote($this->faker->numberBetween(0, 5));
@@ -238,6 +239,7 @@ class AppFixtures extends Fixture
                 $testresult = new TestResults();
                 $testresult->setIdTest($test);
                 $testresult->setIdUser($users[\mt_rand(0, \count($users) - 1)]);
+                $testresult->setDate(new \DateTime('now'));
                 $testresult->setResult($this->faker->numberBetween(20, 100));
                 $entity_manager->persist($testresult);
                 $testresults[] = $testresult;
@@ -262,7 +264,14 @@ class AppFixtures extends Fixture
         }
 
 
+        $entity_manager->flush();
+
+
     }
+
+
+
+
 
 
 }
