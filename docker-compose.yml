@@ -55,6 +55,14 @@ services:
       - "8080:80"
       - "443:443"
 
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8084:8080"
+
 
 volumes:
   db-data: {}
