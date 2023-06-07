@@ -20,9 +20,9 @@ jobs:
       - name: Start services
         run: docker compose up -d
       - name: Wait for services
-        run: |
-            run: sleep 30s
-            shell: bash
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '30s'
       - name: Create test database
         run: |
           cd ..
