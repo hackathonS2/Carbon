@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TestResults index{% endblock %}
+
+{% block body %}
+    <h1>TestResults index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Result</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for test_result in test_results %}
+            <tr>
+                <td>{{ test_result.id }}</td>
+                <td>{{ test_result.result }}</td>
+                <td>{{ test_result.date ? test_result.date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_admin_test_results_show', {'id': test_result.id}) }}">show</a>
+                    <a href="{{ path('app_admin_test_results_edit', {'id': test_result.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_test_results_new') }}">Create new</a>
+{% endblock %}
