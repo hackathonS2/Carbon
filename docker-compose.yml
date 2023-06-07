@@ -52,7 +52,7 @@ services:
     depends_on:
       - php
     ports:
-      - "8084:80"
+      - "8080:80"
       - "443:443"
 
   adminer:
