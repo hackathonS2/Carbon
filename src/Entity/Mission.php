@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MissionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,17 @@ class Mission
 
     #[ORM\Column]
     private ?int $note = null;
+
+    #[ORM\ManyToOne(inversedBy: 'missionsDev')]
+    private ?User $consultant = null;
+
+    #[ORM\OneToMany(mappedBy: 'mission', targetEntity: Note::class)]
+    private Collection $clientNotes;
+
+    public function __construct()
+    {
+        $this->clientNotes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +118,48 @@ class Mission
     public function setNote(int $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getConsultant(): ?User
+    {
+        return $this->consultant;
+    }
+
+    public function setConsultant(?User $consultant): self
+    {
+        $this->consultant = $consultant;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Note>
+     */
+    public function getClientNotes(): Collection
+    {
+        return $this->clientNotes;
+    }
+
+    public function addClientNote(Note $clientNote): self
+    {
+        if (!$this->clientNotes->contains($clientNote)) {
+            $this->clientNotes->add($clientNote);
+            $clientNote->setMission($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClientNote(Note $clientNote): self
+    {
+        if ($this->clientNotes->removeElement($clientNote)) {
+            // set the owning side to null (unless already changed)
+            if ($clientNote->getMission() === $this) {
+                $clientNote->setMission(null);
+            }
+        }
 
         return $this;
     }
