@@ -226,6 +226,7 @@ class AppFixtures extends Fixture
             for ($i = 0; $i < 3; $i++) {
                 $test = new Test();
                 $test->setIdTechno($techno);
+                $test->setActif(true);
                 $test->setNom($techno->getNom() . ' ' . $difficulty_end_name[$i]);
                 $test->setDifficulte($difficulty[$i]);
                 $entity_manager->persist($test);
