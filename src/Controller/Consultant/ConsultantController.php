@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\TechnoRepository;
 
 #[Route('/consultant')]
 class ConsultantController extends AbstractController
@@ -21,10 +22,12 @@ class ConsultantController extends AbstractController
     }
 
     #[Route('/home', name: 'consultant_home')]
-    public function index_consultant(): Response
+    public function index_consultant(TechnoRepository $technoRepository): Response
     {
         return $this->render('consultant/home/index.html.twig', [
             'controller_name' => 'ConsultantController',
+            'technos' => $technoRepository->findAll(),
+            'isTest' => false
         ]);
     }
 

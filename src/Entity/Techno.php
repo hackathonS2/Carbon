@@ -28,6 +28,9 @@ class Techno
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $urlFormation = null;
+
     public function __construct()
     {
         $this->tests = new ArrayCollection();
@@ -107,7 +110,6 @@ class Techno
                 $indicateurTech->setIdTechno(null);
             }
         }
-
         return $this;
     }
 
@@ -119,6 +121,18 @@ class Techno
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUrlFormation(): ?string
+    {
+        return $this->urlFormation;
+    }
+
+    public function setUrlFormation(string $urlFormation): self
+    {
+        $this->urlFormation = $urlFormation;
 
         return $this;
     }
