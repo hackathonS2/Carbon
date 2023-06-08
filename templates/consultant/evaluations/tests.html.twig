@@ -1,0 +1,78 @@
+{% extends 'consultant/consultant.html.twig' %}
+
+{% block title %}Consultant
+{% endblock %}
+
+{% block body %}
+	<div class="flex consultant-container justify-center">
+		<div class="content w-full">
+			<div class="flex flex-col items-center ">
+
+				<div class="w-full mt-12 mb-8  bg-gray-100 rounded-full">
+
+					<div class="relative right-0">
+						<ul class="tabs relative flex flex-row  list-none rounded-lg bg-blue-gray-50/60 " data-tabs="tabs" role="list">
+							<li class="z-30 flex-auto text-center">
+								<a id="profil" onclick="swithTab(event, 'Profil')" class="tablinks text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center  border-0 bg-inherit px-0 py-2 transition-all ease-in-out" data-tab-target="" active role="tab" aria-selected="true">
+									<span class="ml-1">Profil</span>
+								</a>
+							</li>
+							<li class="z-30 flex-auto text-center">
+								<a id="evaluations" onclick="swithTab(event, 'Evaluations')" class="tablinks text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center border-0 bg-inherit px-0 py-2 transition-all ease-in-out" data-tab-target="" role="tab" aria-selected="false">
+									<span class="ml-1">Evaluations</span>
+								</a>
+							</li>
+							<li class="z-30 flex-auto text-center">
+								<a onclick="swithTab(event, 'Missions')" class="tablinks text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center  border-0 bg-inherit px-0 py-2 transition-all ease-in-out" data-tab-target="" role="tab" aria-selected="false">
+									<span class="ml-1">Missions</span>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+
+				<div id="Profil" class="tabcontent w-full">
+					<h3>Profil</h3>
+					<p>Open Profil page.</p>
+				</div>
+
+				<div id="Evaluations" class="tabcontent w-full">
+					<h3>Evaluations</h3>
+					<p>Open evaluation page.</p>
+                    	<p>Open evaluation page tests.</p>
+				</div>
+
+				<div id="Missions" class="tabcontent w-full">
+					<h3>Missions</h3>
+					<p>Open Mes missions page</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script>
+
+
+document.getElementById('evaluations').click();
+
+function swithTab(evt, cityName) {
+var i,
+tabcontent,
+tablinks;
+tabcontent = document.getElementsByClassName("tabcontent");
+for (i = 0; i < tabcontent.length; i++) {
+tabcontent[i].style.display = "none";
+}
+tablinks = document.getElementsByClassName("tablinks");
+for (i = 0; i < tablinks.length; i++) {
+tablinks[i].className = tablinks[i].className.replace(" active bg-green-400 text-white rounded-full", "");
+}
+document.getElementById(cityName).style.display = "block";
+evt.currentTarget.className += " active bg-green-400 text-white rounded-full";
+}
+	</script>
+
+{% endblock %}
+

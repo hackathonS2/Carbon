@@ -210,6 +210,7 @@ class AppFixtures extends Fixture
             $techno = new Techno();
             $techno->setNom($this->technoList[mt_rand(0, count($this->technoList) - 1)]);
             $techno->setDescription($this->faker->realTextBetween($minNbChars = 360, $maxNbChars = 500, $indexSize = 2));
+            $techno->setUrlFormation($this->faker->url());
             $entity_manager->persist($techno);
             $technos[] = $techno;
         }

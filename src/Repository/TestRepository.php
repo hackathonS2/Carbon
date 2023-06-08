@@ -39,6 +39,18 @@ class TestRepository extends ServiceEntityRepository
         }
     }
 
+    /*find tests by techno id */
+
+    public function findByTechnoId(int $id): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.idTechno = :val')
+            ->setParameter('val', $id)
+            ->orderBy('t.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Test[] Returns an array of Test objects
 //     */
