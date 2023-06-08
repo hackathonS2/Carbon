@@ -10,5 +10,50 @@
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
+
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.email, { 'attr': {'class': 'form__field', 'id' : 'inputEmail', 'type' : 'email', 'placeholder':'Email'}})}}
+          {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'form__label', 'for':'inputEmail'}}) }}
+        </div>
+
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.roles, { 'attr': {'class': 'form__field', 'id' : 'inputRoles', 'placeholder':'Roles'}})}}
+          {{ form_label(registrationForm.roles, 'Roles', {'label_attr': {'class': 'form__label', 'for':'inputRoles'}}) }}
+        </div>
+        
+         <div class ="form__group field">
+          {{ form_widget(registrationForm.nom, { 'attr': {'class': 'form__field', 'id' : 'inputEmail', 'type' : 'email', 'placeholder':'Email'}})}}
+          {{ form_label(registrationForm.nom, 'Email', {'label_attr': {'class': 'form__label', 'for':'inputEmail'}}) }}
+        </div>
+        
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.prenom, { 'attr': {'class': 'form__field', 'id' : 'inputEmail', 'type' : 'email', 'placeholder':'Email'}})}}
+          {{ form_label(registrationForm.prenom, 'Email', {'label_attr': {'class': 'form__label', 'for':'inputEmail'}}) }}
+        </div>
+        
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.dateDeNaissance, { 'attr': {'class': 'form__field', 'id' : 'inputEmail', 'type' : 'email', 'placeholder':'Email'}})}}
+          {{ form_label(registrationForm.dateDeNaissance, 'Email', {'label_attr': {'class': 'form__label', 'for':'inputEmail'}}) }}
+        </div>
+        
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.adresse, { 'attr': {'class': 'form__field', 'id' : 'inputEmail', 'type' : 'email', 'placeholder':'Email'}})}}
+          {{ form_label(registrationForm.adresse, 'Email', {'label_attr': {'class': 'form__label', 'for':'inputEmail'}}) }}
+        </div> 
+
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.tel, { 'attr': {'class': 'form__field', 'id' : 'inputEmail', 'type' : 'email', 'placeholder':'Email'}})}}
+          {{ form_label(registrationForm.tel, 'Email', {'label_attr': {'class': 'form__label', 'for':'inputEmail'}}) }}
+        </div>
+
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.description, { 'attr': {'class': 'form__field', 'id' : 'inputEmail', 'type' : 'email', 'placeholder':'Email'}})}}
+          {{ form_label(registrationForm.description, 'Email', {'label_attr': {'class': 'form__label', 'for':'inputEmail'}}) }}
+        </div>
+
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.salaireSouhaite, { 'attr': {'class': 'form__field', 'id' : 'inputEmail', 'type' : 'email', 'placeholder':'Email'}})}}
+          {{ form_label(registrationForm.salaireSouhaite, 'Email', {'label_attr': {'class': 'form__label', 'for':'inputEmail'}}) }}
+        </div>        
     {{ form_end(registrationForm) }}
 {% endblock %}

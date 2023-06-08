@@ -91,17 +91,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $softSkills;
 
     #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: IndicateurTech::class, orphanRemoval: true)]
-    private Collection $indicateurTeches;
+    private Collection $indicateurTechs;
+
+    #[ORM\OneToMany(mappedBy: 'consultant', targetEntity: Mission::class)]
+    private Collection $missionsDev;
 
     public function __construct()
     {
         $this->testResults = new ArrayCollection();
         $this->softSkills = new ArrayCollection();
-        $this->indicateurTeches = new ArrayCollection();
+        $this->indicateurTechs = new ArrayCollection();
         if ($this->getCreatedAt() == null) {
             $this->setCreatedAt(new \DateTimeImmutable());
         }
         $this->setUpdatedAt(new \DateTimeImmutable());
+        $this->missionsDev = new ArrayCollection();
 
     }
 
@@ -442,15 +446,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, IndicateurTech>
      */
-    public function getIndicateurTeches(): Collection
+    public function getIndicateurTechs(): Collection
     {
-        return $this->indicateurTeches;
+        return $this->indicateurTechs;
     }
 
     public function addIndicateurTech(IndicateurTech $indicateurTech): self
     {
-        if (!$this->indicateurTeches->contains($indicateurTech)) {
-            $this->indicateurTeches->add($indicateurTech);
+        if (!$this->indicateurTechs->contains($indicateurTech)) {
+            $this->indicateurTechs->add($indicateurTech);
             $indicateurTech->setIdUser($this);
         }
 
@@ -459,10 +463,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeIndicateurTech(IndicateurTech $indicateurTech): self
     {
-        if ($this->indicateurTeches->removeElement($indicateurTech)) {
+        if ($this->indicateurTechs->removeElement($indicateurTech)) {
             // set the owning side to null (unless already changed)
             if ($indicateurTech->getIdUser() === $this) {
                 $indicateurTech->setIdUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mission>
+     */
+    public function getMissionsDev(): Collection
+    {
+        return $this->missionsDev;
+    }
+
+    public function addMissionsDev(Mission $missionsDev): self
+    {
+        if (!$this->missionsDev->contains($missionsDev)) {
+            $this->missionsDev->add($missionsDev);
+            $missionsDev->setConsultant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMissionsDev(Mission $missionsDev): self
+    {
+        if ($this->missionsDev->removeElement($missionsDev)) {
+            // set the owning side to null (unless already changed)
+            if ($missionsDev->getConsultant() === $this) {
+                $missionsDev->setConsultant(null);
             }
         }
 
