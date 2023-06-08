@@ -116,6 +116,7 @@ class AppFixtures extends Fixture
         $user->setPrenom('admin');
         $user->setTel('0606060606');
         $user->setAdresse($this->faker->address());
+        $user->setIsVerified(true);
         $entity_manager->persist($user);
         $users[] = $user;
  
@@ -128,6 +129,7 @@ class AppFixtures extends Fixture
         $user->setPrenom('operationnel');
         $user->setTel('0606060606');
         $user->setAdresse($this->faker->address());
+        $user->setIsVerified(true);
         $entity_manager->persist($user);
         $users[] = $user;
 
@@ -149,6 +151,7 @@ class AppFixtures extends Fixture
             $user->setObjectifMensuelCommercial($this->faker->text(100));
             $user->setLinkLinkedin($this->faker->url());
             $user->setLinkSlack($this->faker->url());
+            $user->setIsVerified(true);
             $entity_manager->persist($user);
             $users[] = $user;
         }
