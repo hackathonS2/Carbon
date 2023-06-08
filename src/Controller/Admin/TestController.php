@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Test;
 use App\Form\TestType;
+use App\Repository\TechnoRepository;
 use App\Repository\TestRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,6 +32,29 @@ class TestController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $testRepository->save($test, true);
 
+            return $this->redirectToRoute('app_admin_test_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/test/new.html.twig', [
+            'test' => $test,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/new/{id}', name: 'app_admin_test_new_by_id_techno', methods: ['GET', 'POST'])]
+    public function newByIdTechno(Request $request, TestRepository $testRepository,$id,TechnoRepository $technoRepository): Response
+    {
+        $test = new Test();
+        $techno = $technoRepository->find($id);
+        if (empty($techno))
+        {
+            $this->redirectToRoute("admin_only");
+        }
+        $form = $this->createForm(TestType::class, $test);
+        $form->handleRequest($request);
+        $test->setIdTechno($techno);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $testRepository->save($test, true);
             return $this->redirectToRoute('app_admin_test_index', [], Response::HTTP_SEE_OTHER);
         }
 

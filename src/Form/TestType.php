@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Test;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,7 +15,12 @@ class TestType extends AbstractType
         $builder
             ->add('nom')
             ->add('difficulte')
-            ->add('idTechno')
+            ->add('actif',ChoiceType::class,[
+                'choices'  => [
+                    'Actif' => true,
+                    'Test Fermé' => false,
+                ],
+            ])
         ;
     }
 

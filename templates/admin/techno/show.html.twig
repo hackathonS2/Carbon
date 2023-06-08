@@ -25,6 +25,6 @@
     <a href="{{ path('app_techno_index') }}">back to list</a>
 
     <a href="{{ path('app_techno_edit', {'id': techno.id}) }}">edit</a>
-
+    <a href="{{ path('app_admin_test_new_by_id_techno', {'id': techno.id}) }}">Créer une session de test</a>
     {{ include('admin/techno/_delete_form.html.twig') }}
 {% endblock %}
