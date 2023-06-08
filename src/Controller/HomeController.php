@@ -20,18 +20,7 @@ class HomeController extends AbstractController
     {
         $this->security = $security;
     }
-    
-    #[Route('/consultant', name: 'consultant_only')]
-    public function redirectToConsultant() : Response
-    {
-        return $this->redirectToRoute('consultant_home');
-    }
 
-    #[Route('/admin', name: 'admin_only')]
-    public function redirectToAdmin() : Response
-    {
-        return $this->redirectToRoute('admin_home');
-    }
     #[Route('/planning', name: 'planning_corporate')]
     public function redirectToPlanning() : Response
     {
@@ -58,7 +47,7 @@ class HomeController extends AbstractController
         return $this->redirectToRoute('app_login');}
     }
     /*************************ADMIN*************************/
-    #[Route('/admin/home', name: 'admin_home')]
+    #[Route('/home', name: 'admin_home')]
     public function index(): Response
     { 
         return $this->render('admin/home/index.html.twig', [
