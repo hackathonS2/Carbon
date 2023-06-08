@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
+                <th>Description</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 <td>{{ techno.id }}</td>
                 <td>{{ techno.nom }}</td>
+                <td>{{ techno.description }}</td>
                 <td>
                     <a href="{{ path('app_techno_show', {'id': techno.id}) }}">show</a>
                     <a href="{{ path('app_techno_edit', {'id': techno.id}) }}">edit</a>
