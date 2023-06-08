@@ -119,13 +119,13 @@ class AppFixtures extends Fixture
         $entity_manager->persist($user);
         $users[] = $user;
  
-        // create users with ROLE_COMMERCIAL
+        // create users with OPERATIONNEL
         $user = new User();
-        $user->setEmail('commercial@commercial.fr');
-        $user->setPassword($this->hasher->hashPassword($user, 'commercial'));
-        $user->setRoles(['ROLE_COMMERCIAL']);
+        $user->setEmail('operationnel@operationnel.fr');
+        $user->setPassword($this->hasher->hashPassword($user, 'operationnel'));
+        $user->setRoles(['ROLE_OPERATIONNEL']);
         $user->setNom('admin');
-        $user->setPrenom('commercial');
+        $user->setPrenom('operationnel');
         $user->setTel('0606060606');
         $user->setAdresse($this->faker->address());
         $entity_manager->persist($user);
