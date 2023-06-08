@@ -1,0 +1,17 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="flex h-screen">
+        <div class="m-auto">
+            <h1 class="text-9xl font-bold">404</h1>
+            <p class="font-medium text-lg">Page non trouvé</p>
+            <p>
+                La page demandée est introuvable. Vérifier si l'URL ne contient pas une faute
+                d'orthographe sinon
+                <a class="underline" href="{{ path('home') }}">retourner à la page d'accueil</a>.
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

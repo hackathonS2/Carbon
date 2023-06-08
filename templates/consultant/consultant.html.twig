@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% block head %}
+			{% include('consultant/global/head.html.twig') %}
+		{% endblock %}
+	</head>
+	<body>
+
+		<!-- begin app -->
+		<div class="flex flex-col bg-white text-black">
+			{% block header %}
+				{% include('consultant/global/header.html.twig') %}
+			{% endblock %}
+				{% block body %}{% endblock %}
+			<!-- end app-wrap -->
+			{% block footer %}
+				{% include('consultant/global/footer.html.twig') %}
+			{% endblock %}
+		</div>
+	</body>
+</html>
