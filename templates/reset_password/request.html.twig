@@ -6,17 +6,17 @@
     {% for flash_error in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    <h1>Reset your password</h1>
+    <div class="flex items-center justify-center h-screen w-1/2 mx-auto  min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-white" >
+
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 text-black">Reset your password</h2>
 
     {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
-        <div>
-            <small>
-                Enter your email address and we will send you a
-                link to reset your password.
-            </small>
+        <div class ="form__group field">
+          {{ form_widget(requestForm.email, { 'attr': {'class': 'm-10 form__field', 'id' : 'inputEmail', 'type' : 'email', 'placeholder':'Email'}})}}
+          {{ form_label(requestForm.email, 'Email', {'label_attr': {'class': 'form__label', 'for':'inputEmail'}}) }}
         </div>
 
-        <button class="btn btn-primary">Send password reset email</button>
+        <button class="btn red-button cta">Send password reset email</button>
     {{ form_end(requestForm) }}
+    </div>
 {% endblock %}
