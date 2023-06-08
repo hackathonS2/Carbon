@@ -40,7 +40,10 @@ class RegistrationFormType extends AbstractType
             ->add('description')
             ->add('salaireSouhaite')
             ->add('Submit',SubmitType::class,[
-                'label' => 'Envoyer'
+                'label' => 'Envoyer',
+                'attr' =>[
+                'class' => 'flex w-full justify-center rounded-md  px-3 py-5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 red-button cta'
+                ],
             ])
         ;
     }
