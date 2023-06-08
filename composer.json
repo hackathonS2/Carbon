@@ -25,7 +25,11 @@
         "symfony/validator": "6.3.*",
         "symfony/webpack-encore-bundle": "^2.0",
         "symfony/yaml": "6.3.*",
+<<<<<<< HEAD
         "symfonycasts/reset-password-bundle": "^1.17",
+=======
+        "symfonycasts/reset-password-bundle": "*",
+>>>>>>> fd4ef42 (Crud techno)
         "symfonycasts/verify-email-bundle": "^1.13",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"

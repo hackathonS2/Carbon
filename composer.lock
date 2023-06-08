@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "a60ad30eebe7060cca11450433403523",
+=======
+    "content-hash": "d8b45c2a40693bb5a3c7e399b70b6503",
+>>>>>>> fd4ef42 (Crud techno)
     "packages": [
         {
             "name": "doctrine/annotations",
