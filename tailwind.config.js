@@ -11,15 +11,3 @@ export const theme = {
     },
 };
 export const plugins = [require('@tailwindcss/line-clamp')];
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-    content: [
-      "./assets/**/*.js",
-      "./templates/**/*.html.twig",
-    ],
-    theme: {
-      extend: {},
-    },
-    plugins: [],
-  }

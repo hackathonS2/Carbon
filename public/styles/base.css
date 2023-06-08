@@ -1,0 +1,69 @@
+
+body {
+    background-color: white ;
+}
+
+.red-button {
+    background: rgb(2,0,36) !important;
+    background: linear-gradient(90deg, rgba(229,63,73,1) 0%, #ea656d 100%) !important;
+}
+.red-button:hover {
+    background-color: #ce3841 !important;
+}
+
+.redlink {
+    color: lightgray !important;
+}
+
+.redlink:visited{
+    color: #ce3841 !important;
+}
+
+.redlink:hover{
+    color: #ce3841 !important;
+}
+ 
+input:focus, textarea:focus, select:focus{
+    box-shadow: none !important;
+}
+.cta {
+    display: flex;
+    padding: 10px 45px;
+    text-decoration: none;
+    font-size: 40px;
+    color: white;
+    transition: 1s;
+    box-shadow: 6px 6px 0 black;
+    transform: skewX(-15deg);
+}
+
+.cta:focus {
+   outline: none; 
+}
+
+.cta:hover {
+    transition: 0.5s;
+    box-shadow: 10px 10px 0 #FAE0E1;
+}
+
+.cta span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 0px;
+}
+
+.cta:hover  span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 45px;
+}
+
+  span {
+    transform: skewX(15deg) 
+  }
+
+  span:nth-child(2) {
+    width: 20px;
+    margin-left: 30px;
+    position: relative;
+    top: 12%;
+  }
+ 
