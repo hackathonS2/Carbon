@@ -25,15 +25,17 @@ class RegistrationFormType extends AbstractType
             ->add('email')
             ->add('roles', ChoiceType::class,[
                 'choices' => [
-                    'Administrateur'=>'ROLE_ADMIN',
-                    'RH'=>'ROLE_RH',
+                    'Consultant'=>'ROLE_CONSULTANT',
                     'Operationnel'=>'ROLE_OPERATIONNEL',
                 ],
-                'multiple' => true
+                'multiple' => true,
             ])
             ->add('nom')
             ->add('prenom')
-            ->add('dateDeNaissance',DateType::class)
+            ->add('dateDeNaissance',DateType::class, [
+                'widget' => 'single_text',
+                'attr' => ['max' => date("Y-m-d")],
+            ])
             ->add('adresse')
             ->add('tel')
             ->add('description')
