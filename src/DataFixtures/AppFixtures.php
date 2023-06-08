@@ -209,6 +209,7 @@ class AppFixtures extends Fixture
         foreach ($this->technoList as $techno) {
             $techno = new Techno();
             $techno->setNom($this->technoList[mt_rand(0, count($this->technoList) - 1)]);
+            $techno->setDescription($this->faker->realTextBetween($minNbChars = 360, $maxNbChars = 500, $indexSize = 2));
             $entity_manager->persist($techno);
             $technos[] = $techno;
         }

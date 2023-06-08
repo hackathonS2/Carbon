@@ -15,6 +15,10 @@
                 <th>Nom</th>
                 <td>{{ techno.nom }}</td>
             </tr>
+            <tr>
+                <td>Desciption</td>
+                <td>{{ techno.description }}</td>
+            </tr>
         </tbody>
     </table>
 
@@ -22,5 +26,5 @@
 
     <a href="{{ path('app_techno_edit', {'id': techno.id}) }}">edit</a>
 
-    {{ include('techno/_delete_form.html.twig') }}
+    {{ include('admin/techno/_delete_form.html.twig') }}
 {% endblock %}
