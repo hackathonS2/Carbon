@@ -24,9 +24,28 @@ class HomeController extends AbstractController
     #[Route('/', name: 'global_home')]
     public function globalHome() : Response
     {
-        return $this->render('globalHome/globalHome.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
+        if($this->security->isGranted('IS_AUTHENTICATED_REMEMBERED')){
+            
+            if($this->isGranted('ROLE_OPERATIONNEL')){
+                return $this->render('operationnel/home/index.html.twig', [
+                    'controller_name' => 'OperationnelController',
+                ]);
+            }
+            if ($this->isGranted('ROLE_CONSULTANT')){
+                return $this->render('consultant/home/index.html.twig', [
+                    'controller_name' => 'ConsultantController',
+                ]);
+            }
+            if ($this->isGranted('ROLE_ADMIN')){
+                return $this->render('admin/home/index.html.twig', [
+                    'controller_name' => 'HomeController',
+                ]);
+            }
+        }else{
+            return $this->render('globalHome/globalHome.html.twig', [
+                'controller_name' => 'HomeController',
+            ]);
+        }
     }
 
     #[Route('/planning', name: 'planning_corporate')]
