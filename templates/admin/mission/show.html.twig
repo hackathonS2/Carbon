@@ -1,0 +1,46 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Mission{% endblock %}
+
+{% block body %}
+    <h1>Mission</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mission.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ mission.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ mission.description }}</td>
+            </tr>
+            <tr>
+                <th>DateDebut</th>
+                <td>{{ mission.dateDebut ? mission.dateDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateFin</th>
+                <td>{{ mission.dateFin ? mission.dateFin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>MailClient</th>
+                <td>{{ mission.mailClient }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ mission.note }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_mission_index') }}">back to list</a>
+
+    <a href="{{ path('admin_mission_edit', {'id': mission.id}) }}">edit</a>
+
+    {{ include('admin/mission/_delete_form.html.twig') }}
+{% endblock %}
