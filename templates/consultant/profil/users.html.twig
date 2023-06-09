@@ -1,17 +1,25 @@
 {% extends 'consultant/consultant.html.twig' %}
 
 {% block title %}users index{% endblock %}
-{% block javascripts %}
-<script>
-              <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-              //make filter if you click on checkbox print the users who have this techno
-              $(document).ready(function(){
-                $('.techno').click(function(){
-                  var checked = $(this).val();
-                  console.log(checked);
 
-                })
-              })
+{% block javascripts %}
+<script type="text/javascript" defer>
+const input = document.querySelectorAll('.techno');
+const span = document.querySelectorAll('[data-skill]');
+const tr = document.querySelectorAll('tr');
+input.forEach((input) => {
+    input.addEventListener('change', () => {
+        const checked = document.querySelectorAll('.techno:checked');
+        const checkedValues = Array.from(checked).map((el) => el.value);
+        span.forEach((span) => {
+            if (checkedValues.includes(span.dataset.skill)) {
+                span.parentElement.parentElement.style.display = 'table-row';
+            } else {
+                span.parentElement.parentElement.style.display = 'none';
+            }
+        });
+    });
+});
 </script>
 {% endblock %}
 
@@ -25,7 +33,7 @@
             {% for techno in technos %}
                 <div>
                     
-                  <input type="checkbox" name="techno" value="{{ techno.nom }}" id="{{ techno.id }}" class="techno" place>
+                  <input type="checkbox" name="techno" value="{{ techno.id }}" id="{{ techno.id }}" class="techno">
                     {{ techno.nom }}
                   </input>
                 </div>
@@ -57,10 +65,11 @@
                         <td>{{ user.prenom }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.softSkills|length  }}</td>
+                        <td><span data-skill="1" >React</span></td>
                         <td>{% for testResult in user.testResults %}
-                            {% if testResult.test.hardskill is not null %}
-                                {{ testResult.test.hardskill.nom }}
-                            {% endif %}
+                               <span data-skill={{testResult.test.hardskill.id}} id={{testResult.test.hardskill.id}}> {{ testResult.test.hardskill.nom }}
+                                </span>
+                            
                         {% endfor %}</td>
 
                         
