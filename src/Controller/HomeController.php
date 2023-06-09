@@ -62,6 +62,17 @@ class HomeController extends AbstractController
         return $this->redirectToRoute('admin_home');
     }
 
+    #[Route('/users', name: 'admin_users')]
+    public function users(UserRepository $userRepository): Response
+    {
+        $users = $userRepository->findAll();
+    
+        return $this->render('admin/global/index.html.twig', [
+            'controller_name' => 'HomeController',
+            'users' => $users,
+        ]);
+    }
+
     #[Route('/profil', name: 'admin_profil')]
     public function profile_consultant(): Response
     {   
