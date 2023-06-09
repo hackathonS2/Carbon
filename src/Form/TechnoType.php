@@ -14,6 +14,7 @@ class TechnoType extends AbstractType
         $builder
             ->add('nom')
             ->add('description')
+            ->add('urlFormation')
         ;
     }
 

@@ -3,9 +3,13 @@
 {% block title %}New Techno{% endblock %}
 
 {% block body %}
-    <h1>Create new Techno</h1>
+<div class="flex items-center justify-center h-screen w-1/2 mx-auto  min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-white" >
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h1 style="font-weight: bold; font-size: 1.3em;">Création nouveau Techno</h1>
 
     {{ include('admin/techno/_form.html.twig') }}
 
-    <a href="{{ path('app_techno_index') }}">back to list</a>
+    <a href="{{ path('app_techno_index') }}" class="font-semibold text-indigo-600 hover:text-indigo-500 redlink ">back to list</a>
+        </div>
+</div>
 {% endblock %}

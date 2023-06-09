@@ -222,7 +222,7 @@ class AppFixtures extends Fixture
 
         // add tests for each techno ranging from starter to expert
         $difficulty_end_name = ['Starter', 'Intermediate', 'Expert'];
-        $difficulty = [0, 1, 2];
+        $difficulty = [1, 2, 3];
         foreach ($technos as $techno) {
             for ($i = 0; $i < 3; $i++) {
                 $test = new Test();
