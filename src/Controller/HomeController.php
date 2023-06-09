@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin')]
 class HomeController extends AbstractController
 {
     private $security;
@@ -20,6 +19,14 @@ class HomeController extends AbstractController
     public function __construct(Security $security)
     {
         $this->security = $security;
+    }
+
+    #[Route('/', name: 'global_home')]
+    public function globalHome() : Response
+    {
+        return $this->render('globalHome/globalHome.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
     }
 
     #[Route('/planning', name: 'planning_corporate')]
@@ -48,7 +55,7 @@ class HomeController extends AbstractController
         return $this->redirectToRoute('app_login');}
     }
     /*************************ADMIN*************************/
-    #[Route('/home', name: 'admin_home')]
+    #[Route('admin/home', name: 'admin_home')]
     public function index(): Response
     { 
         return $this->render('admin/home/index.html.twig', [
@@ -56,13 +63,13 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/', name: 'admin_only')]
+    #[Route('admin/', name: 'admin_only')]
     public function redirectToAdmin() : Response
     {
         return $this->redirectToRoute('admin_home');
     }
 
-    #[Route('/users', name: 'admin_users')]
+    #[Route('admin/users', name: 'admin_users')]
     public function users(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
@@ -73,7 +80,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/profil', name: 'admin_profil')]
+    #[Route('admin/profil', name: 'admin_profil')]
     public function profile_consultant(): Response
     {   
 
