@@ -29,7 +29,8 @@ class Test
     private Collection $testResults;
 
     #[ORM\Column]
-    private ?bool $actif = null;
+    #[ORM\JoinColumn(nullable: true)]
+    private ?bool $actif = false;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
