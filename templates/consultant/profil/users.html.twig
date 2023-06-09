@@ -9,6 +9,8 @@ const span = document.querySelectorAll('[data-hardskill]');
 const tr = document.querySelectorAll('tr');
 input.forEach((input) => {
     input.addEventListener('change', () => {
+      //if no .techno:checked show all
+
         const checked = document.querySelectorAll('.techno:checked');
         const checkedValues = Array.from(checked).map((el) => el.value);
         span.forEach((span) => {
@@ -18,6 +20,11 @@ input.forEach((input) => {
                 span.parentElement.parentElement.style.display = 'none';
             }
         });
+            if (!document.querySelector('.techno:checked')) {
+            tr.forEach((tr) => {
+                tr.style.display = 'table-row';
+            });
+        }
     });
 });
 </script>
@@ -36,6 +43,9 @@ input.forEach((input) => {
                   <input type="checkbox" name="techno" value="{{ techno.id }}" id="{{ techno.id }}" class="techno">
                     {{ techno.nom }}
                   </input>
+                  <!--<input type="checkbox" name"soft-skill" valute="{# soft_skill.id #}" id="{#soft_skills.id #}" class="soft-skill"> 
+                  {# soft_skill.nom #}
+                  </input>-->
                 </div>
                 <br>
             {% endfor %}
@@ -65,8 +75,8 @@ input.forEach((input) => {
                         <td>{{ user.prenom }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.softSkills|length  }}</td>
-                        <td><span data-hardskill="1" >React</span></td>
-                        <td>
+                        <td><span data-hardskill="1" >React</span>
+                    
                           {% for testResult in user.testResults %}
                             <span data-hardskill={{testResult.test.hardskill.id}} id={{testResult.test.hardskill.id}}> {{ testResult.test.hardskill.nom }}
                             </span>
