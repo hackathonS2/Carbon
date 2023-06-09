@@ -32,9 +32,11 @@ class EvaluationController extends AbstractController
     {
         $monuser =  $this->getUser();
         $testResults = [];
+        $techno = null;
         foreach ($monuser->getTestResults() as $testResult) {
             if ($testResult->getIdTest()->getIdTechno()->getId() == $id) {
                 $testResults[] = $testResult;
+                $techno = $testResult->getIdTest()->getIdTechno();
             }
         }
         // conver $testResults to array
@@ -56,7 +58,8 @@ class EvaluationController extends AbstractController
             'tests' => $testRepository->findByTechnoId($id),
             'testResults' => $testResults,
             'technos' => [],
-            'missions' => $missionRepository->findByMissionId($user_id)
+            'missions' => $missionRepository->findByMissionId($user_id),
+            'techno' => $techno
         ]);
     }
 
