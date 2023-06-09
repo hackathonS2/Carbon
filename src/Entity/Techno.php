@@ -31,6 +31,7 @@ class Techno
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $urlFormation = null;
 
+
     public function __construct()
     {
         $this->tests = new ArrayCollection();
@@ -136,4 +137,5 @@ class Techno
 
         return $this;
     }
+
 }

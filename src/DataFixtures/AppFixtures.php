@@ -48,7 +48,7 @@ class AppFixtures extends Fixture
             'Travail sous pression',
             'Volonté'
         ];
-        
+
         $this->technoList = [
             "PHP",
             "Symfony",
@@ -101,7 +101,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $entity_manager)
     {
-      
 
         /** users fixtures **/
 
@@ -177,25 +176,29 @@ class AppFixtures extends Fixture
 
         $missions = [];
 
-        // create a list of missions
-        for ($i = 0; $i < 10; $i++) {
-            $mission = new Mission();
-            $mission->setNom($this->faker->text(100));
-            $mission->setDateDebut(new \DateTime('now'));
-            $mission->setDescription($this->faker->text(100));
-            $mission->setDateFin(new \DateTime('now'));
-            $mission->setMailClient($this->faker->email());
-            $mission->setNote($this->faker->numberBetween(0, 5));
-            $entity_manager->persist($mission);
-            $missions[] = $mission;
+        // create 3 missions for every users
+        foreach ($users as $user) {
+            for ($i = 0; $i < 3; $i++) {
+                $mission = new Mission();
+                $mission->setNom($this->faker->jobTitle());
+                $mission->setDateDebut(new \DateTime('now'));
+                $mission->setDateFin( new \DateTime('now + 12 month'));
+                $mission->setMailClient($this->faker->email());
+                $mission->setDescription($this->faker->realTextBetween($minNbChars = 360, $maxNbChars = 500, $indexSize = 2));
+                $mission->setNote($this->faker->numberBetween(0, 5));
+                $mission->setConsultant($user);
+                $entity_manager->persist($mission);
+                $missions[] = $mission;
+            }
         }
+
 
         // for every mission, create a list of clientNotes
         foreach ($missions as $mission) {
             for ($i = 0; $i < \mt_rand(1, 3); $i++) {
                 $clientNote = new Note();
                 $clientNote->setMission($mission);
-                $clientNote->setCommentaire($this->faker->text(100));
+                $clientNote->setCommentaire($this->faker->realTextBetween($minNbChars = 360, $maxNbChars = 500, $indexSize = 2));
                 $clientNote->setEval($this->faker->numberBetween(0, 5));
                 $entity_manager->persist($clientNote);
             }
@@ -228,7 +231,7 @@ class AppFixtures extends Fixture
                 $test->setIdTechno($techno);
                 $test->setActif(true);
                 $test->setNom($techno->getNom() . ' ' . $difficulty_end_name[$i]);
-                $test->setDifficulte($difficulty[$i]);
+                $test->setDifficulte($difficulty[$i] + 1);
                 $entity_manager->persist($test);
                 $tests[] = $test;
             }
@@ -240,15 +243,25 @@ class AppFixtures extends Fixture
             $testresults = [];
 
         // for each test create a test result and link it to a user
-        foreach ($tests as $test) {
-            for ($i = 0; $i < 10; $i++) {
-                $testresult = new TestResults();
-                $testresult->setIdTest($test);
-                $testresult->setIdUser($users[\mt_rand(0, \count($users) - 1)]);
-                $testresult->setDate(new \DateTime('now'));
-                $testresult->setResult($this->faker->numberBetween(20, 100));
-                $entity_manager->persist($testresult);
-                $testresults[] = $testresult;
+
+        foreach($users as $user ) {
+            $validateTwo = 2;
+            //get 6 first tests from $tests
+            $first6 = array_slice($tests, 0, 6);
+            foreach ($first6 as $test) {
+                if($validateTwo > 0) {
+                    // for each user add a testresult
+                    $testresult = new TestResults();
+                    $testresult->setIdTest($test);
+                    $testresult->setIdUser($user);
+                    $testresult->setDate(new \DateTime('now'));
+                    $testresult->setResult($this->faker->numberBetween(70, 100));
+                    $entity_manager->persist($testresult);
+                    $testresults[] = $testresult;
+                    $validateTwo--;
+                }else{
+                    $validateTwo = 2;
+                }
             }
         }
 

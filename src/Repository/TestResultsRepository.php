@@ -39,6 +39,19 @@ class TestResultsRepository extends ServiceEntityRepository
         }
     }
 
+    /**search test results by idUser and idTest*/
+    public function findByUserAndTechnoId($idUser, $idTechno): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.idTechno = :idTechno')
+            ->andWhere('t.idUser = :idUser')
+            ->setParameter('idUser', $idUser)
+            ->setParameter('idTechno', $idTechno)
+            ->orderBy('t.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return TestResults[] Returns an array of TestResults objects
 //     */

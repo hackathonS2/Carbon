@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\consultant;
+namespace App\Controller\Consultant;
 
 use App\Entity\Mission;
 use App\Form\MissionType;

@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\TechnoRepository;
 use App\Repository\TestRepository;
+use App\Repository\TestResultsRepository;
+use App\Repository\MissionRepository;
+use stdClass;
 
 class EvaluationController extends AbstractController
 {
@@ -24,12 +27,38 @@ class EvaluationController extends AbstractController
     }
 
     /**fetch all tests by techno id */
-    #[Route('/consultant/home/{id}', name: 'tests_by_techno', methods: ['GET'])]
-    public function indexByTechno(TestRepository $testRepository, $id): Response
+    #[Route('/consultant/home/formations/{id}', name: 'tests_by_techno', methods: ['GET'])]
+    public function indexByTechno(TestRepository $testRepository,MissionRepository $missionRepository, $id): Response
     {
+        $monuser =  $this->getUser();
+        $testResults = [];
+        foreach ($monuser->getTestResults() as $testResult) {
+            if ($testResult->getIdTest()->getIdTechno()->getId() == $id) {
+                $testResults[] = $testResult;
+            }
+        }
+        // conver $testResults to array
+        $testResults = array_map(function ($testResult) {
+            return [
+                'id' => $testResult->getId(),
+                'idTest' => $testResult->getIdTest()->getId(),
+                'idTechno' => $testResult->getIdTest()->getIdTechno()->getId(),
+                'idUser' => $testResult->getIdUser()->getId(),
+                'result' => $testResult->getResult(),
+                'date' => $testResult->getDate()->format('Y-m-d H:i:s')
+            ];
+        }, $testResults);
+
+        $user_id =  $this->getUser()->getId();
+
+
         return $this->render('consultant/evaluations/tests.html.twig', [
             'tests' => $testRepository->findByTechnoId($id),
-            'isTest' => true
+            'testResults' => $testResults,
+            'technos' => [],
+            'missions' => $missionRepository->findByMissionId($user_id)
         ]);
     }
+
+
 }
