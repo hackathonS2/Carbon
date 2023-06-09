@@ -3,7 +3,7 @@
 		<div class="w-full flex flex-wrap justify-between md:pb-0">
 			<div class="w-1/2 md:pl-0">
 				<div class="flex flex-row items-center text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold" >
-					<a class="flex flex-row items-center" href="{{ path('admin_home') }}" >
+					<a class="flex flex-row items-center" href="{{ path('consultant_home') }}" >
 						<img src="{{ asset('images/LogoClientGris.png') }}" style="border-radius: 15px; height: 30px; width:30px" class=" text-pink-600 shadow rounded mr-3" alt="Logo">
 						Carbon
 					</a>
@@ -24,10 +24,10 @@
 						<div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
 							<ul class="list-reset">
 								<li>
-									{# <a href="{{ path('admin_user_show', {'id': app.user.id}) }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-100 no-underline hover:no-underline align-top"> #}
+									{# <a href="{{ path('consultant_user_show', {'id': app.user.id}) }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-100 no-underline hover:no-underline align-top">
 										<i class="fa fa-user-circle mr-1 text-xl" aria-hidden="true"></i>
 										Mon compte
-									</a>
+									</a> #}
 								</li>
 								<li>
 									<hr class="border-t mx-2 border-gray-400">
@@ -36,16 +36,16 @@
 									{# <a href="{{ path('mes_missions') }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-100 no-underline hover:no-underline">Mes missions</a> #}
 								</li>
 								<li>
-									{# <a href="{{ path('admin_evaluation') }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-100 no-underline hover:no-underline">Evaluation</a> #}
+									{# <a href="{{ path('consultant_evaluation') }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-100 no-underline hover:no-underline">Evaluation</a> #}
 								</li>
 								<li>
-									{# <a href="{{ path('admin_gestion_admin') }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-100 no-underline hover:no-underline">Gestion admin</a> #}
+									{# <a href="{{ path('admin_gestion_consultant') }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-100 no-underline hover:no-underline">Gestion Consultant</a> #}
 								</li>
 								<li>
 									<hr class="border-t mx-2 border-gray-400">
 								</li>
 								<li>
-									<a href="/admin/profil" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Profil</a>
+									<a href="/consultant/profil" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Profil</a>
 								</li>
 								<li>
 									<hr class="border-t mx-2 border-gray-400">

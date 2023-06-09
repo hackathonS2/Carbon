@@ -2,7 +2,7 @@
 <html>
 	<head>
 		{% block head %}
-			{% include('admin/global/head.html.twig') %}
+			{% include('operationnel/global/head.html.twig') %}
 		{% endblock %}
 	</head>
 	<body>
@@ -10,13 +10,12 @@
 		<!-- begin app -->
 		<div class="flex flex-col bg-white text-black">
 			{% block header %}
-				{% include('admin/global/header.html.twig') %}
+				{% include('operationnel/global/header.html.twig') %}
 			{% endblock %}
-				{% block body %}
-				{% endblock %}
+				{% block body %}{% endblock %}
 			<!-- end app-wrap -->
 			{% block footer %}
-				{% include('admin/global/footer.html.twig') %}
+				{% include('operationnel/global/footer.html.twig') %}
 			{% endblock %}
 		</div>
 	</body>

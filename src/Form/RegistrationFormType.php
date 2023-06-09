@@ -33,7 +33,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('nom')
             ->add('prenom')
-            ->add('dateDeNaissance',DateType::class)
+            ->add('dateDeNaissance',DateType::class, ['widget' => 'single_text', 'attr' => ['max' => date("Y-m-d")],])
             ->add('adresse')
             ->add('tel')
             ->add('description')

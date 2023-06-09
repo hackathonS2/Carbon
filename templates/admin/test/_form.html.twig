@@ -1,4 +1,22 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+        <div class ="form__group field">
+          {{ form_widget(form.nom, { 'attr': {'class': 'form__field', 'id' : 'inputNom',  'placeholder':'Nom'}})}}
+          {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form__label', 'for':'inputNom'}}) }}
+        </div>
+        <div class ="form__group field">
+          {{ form_widget(form.difficulte, { 'attr': {'class': 'form__field', 'id' : 'inputDifficulte',  'placeholder':'Dfficulté'}})}}
+          {{ form_label(form.difficulte, 'Difficulté', {'label_attr': {'class': 'form__label', 'for':'inputDifficulte'}}) }}
+        </div>
+        <div class ="form__group field">
+          {{ form_widget(form.actif, { 'attr': {'class': 'form__field', 'id' : 'inputActif',  'placeholder':'Actif'}})}}
+          {{ form_label(form.actif, 'Actif', {'label_attr': {'class': 'form__label', 'for':'inputActif'}}) }}
+        </div>
+         <div class ="form__group field">
+          {{ form_widget(form.techno, { 'attr': {'class': 'form__field', 'id' : 'inputTechno',  'placeholder':'Techno'}})}}
+          {{ form_label(form.techno, 'Techno', {'label_attr': {'class': 'form__label', 'for':'inputTechno'}}) }}
+        </div>
+
+    <div class="flex items-center justify-center m-8" >
+        <button class="btn cta red-button">{{ button_label|default('Save') }}</button>
+    </div>
 {{ form_end(form) }}

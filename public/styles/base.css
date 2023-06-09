@@ -57,12 +57,10 @@ input:focus, textarea:focus, select:focus{
 }
 
   span {
-    transform: skewX(15deg) 
   }
 
   span:nth-child(2) {
     width: 20px;
-    margin-left: 30px;
     position: relative;
     top: 12%;
   }
