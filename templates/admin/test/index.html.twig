@@ -13,7 +13,7 @@
                 </h1>
                 <div class="me-5">
                     <button type="button" class="btn" style="background-color:#5B98D2;color: white;box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); ">
-                        <a href="" style="text-decoration: none;color: white">
+                        <a href="{{ path('app_admin_test_new') }}" style="text-decoration: none;color: white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/></svg> Nouveau Test
                         </a>
                     </button>
@@ -105,58 +105,13 @@
                     </div>
                     <div style="display: flex;align-items: center;gap: 10px;width: 15%">
 
-                        <a href="{{ path('app_admin_test_show', {'id': test.id}) }}">show</a>
-                        <a href="{{ path('app_admin_test_edit', {'id': test.id}) }}">edit</a>
+                        <a href="{{ path('app_admin_test_show', {'id': test.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#5b98d2" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg></a>
+                        <a href="{{ path('app_admin_test_edit', {'id': test.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#5b98d2" d="M7.243 17.996H3v-4.242L14.435 2.319a1 1 0 0 1 1.414 0l2.829 2.828a1 1 0 0 1 0 1.414L7.243 17.996Zm-4.243 2h18v2H3v-2Z"/></svg></a>
+                            {{ include('admin/test/_delete_form.html.twig') }}
                     </div>
                 </div>
             {% endfor %}
-            <table class="table" style="border-spacing: 5px;">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nom</th>
-                    <th>Difficulte</th>
-                    <th>Test Actif</th>
-                    <td>Date début de test</td>
-                    <th>actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for test in tests %}
-                    <tr style="border-spacing: 5px;">
-                        <td>{{ test.id }}</td>
-                        <td>{{ test.nom }}</td>
-                        <td>
-                            {% if test.difficulte == 1 %}
-                                Starter
-                            {% elseif test.difficulte == 2  %}
-                                Intermediate
-                            {% elseif test.difficulte == 3 %}
-                                Expert
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if test.actif %}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="green" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z"/></svg>
-                            {% else %}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="red" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z"/></svg>
-                            {% endif %}
-                        </td>
-                        <td>{{ test.createdAt|date("d-m-Y") }}</td>
-                        <td>
-                            <a href="{{ path('app_admin_test_show', {'id': test.id}) }}">show</a>
-                            <a href="{{ path('app_admin_test_edit', {'id': test.id}) }}">edit</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="4">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
 
-            <a href="{{ path('app_admin_test_new') }}">Create new</a>
         </div>
 
     </div>

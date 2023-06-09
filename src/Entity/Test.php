@@ -25,7 +25,7 @@ class Test
     #[ORM\JoinColumn(nullable: false)]
     private ?Techno $idTechno = null;
 
-    #[ORM\OneToMany(mappedBy: 'idTest', targetEntity: TestResults::class)]
+    #[ORM\OneToMany(mappedBy: 'idTest', targetEntity: TestResults::class,cascade: ['persist', 'remove'])]
     private Collection $testResults;
 
     #[ORM\Column]
