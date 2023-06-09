@@ -5,14 +5,14 @@
 {% block javascripts %}
 <script type="text/javascript" defer>
 const input = document.querySelectorAll('.techno');
-const span = document.querySelectorAll('[data-skill]');
+const span = document.querySelectorAll('[data-hardskill]');
 const tr = document.querySelectorAll('tr');
 input.forEach((input) => {
     input.addEventListener('change', () => {
         const checked = document.querySelectorAll('.techno:checked');
         const checkedValues = Array.from(checked).map((el) => el.value);
         span.forEach((span) => {
-            if (checkedValues.includes(span.dataset.skill)) {
+            if (checkedValues.includes(span.dataset.hardskill)) {
                 span.parentElement.parentElement.style.display = 'table-row';
             } else {
                 span.parentElement.parentElement.style.display = 'none';
@@ -65,12 +65,13 @@ input.forEach((input) => {
                         <td>{{ user.prenom }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.softSkills|length  }}</td>
-                        <td><span data-skill="1" >React</span></td>
-                        <td>{% for testResult in user.testResults %}
-                               <span data-skill={{testResult.test.hardskill.id}} id={{testResult.test.hardskill.id}}> {{ testResult.test.hardskill.nom }}
-                                </span>
-                            
-                        {% endfor %}</td>
+                        <td><span data-hardskill="1" >React</span></td>
+                        <td>
+                          {% for testResult in user.testResults %}
+                            <span data-hardskill={{testResult.test.hardskill.id}} id={{testResult.test.hardskill.id}}> {{ testResult.test.hardskill.nom }}
+                            </span>
+                          {% endfor %}
+                        </td>
 
                         
                 {% else %}
