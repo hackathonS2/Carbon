@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Actualite;
 use App\Entity\Comments;
 use App\Entity\Mission;
 use App\Entity\SoftSkills;
@@ -223,15 +224,14 @@ class AppFixtures extends Fixture
         $tests = [];
 
         // add tests for each techno ranging from starter to expert
-        $difficulty_end_name = ['Starter', 'Intermediate', 'Expert'];
-        $difficulty = [0, 1, 2];
+        $difficulty = [1, 2, 3];
         foreach ($technos as $techno) {
             for ($i = 0; $i < 3; $i++) {
                 $test = new Test();
                 $test->setIdTechno($techno);
                 $test->setActif(true);
-                $test->setNom($techno->getNom() . ' ' . $difficulty_end_name[$i]);
-                $test->setDifficulte($difficulty[$i] + 1);
+                $test->setNom($techno->getNom());
+                $test->setDifficulte($difficulty[$i]);
                 $entity_manager->persist($test);
                 $tests[] = $test;
             }
@@ -280,6 +280,14 @@ class AppFixtures extends Fixture
                 $entity_manager->persist($indicateurTech);
                 $indicateurTechs[] = $indicateurTech;
             }
+        }
+
+        for ($i=0; $i< 35 ; $i++)
+        {
+            $actualite = new Actualite();
+            $actualite->setTitle($this->faker->title());
+            $actualite->setDescription($this->faker->realText($maxNbChars = 200, $indexSize = 2));
+            $entity_manager->persist($actualite);
         }
 
 

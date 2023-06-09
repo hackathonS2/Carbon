@@ -99,4 +99,15 @@ class TestController extends AbstractController
 
         return $this->redirectToRoute('app_admin_test_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/techno/{id}', name: 'app_admin_test_show_techno', methods: ['GET'])]
+    public function show_test_techno($id,TestRepository $testRepository, TechnoRepository $technoRepository)
+    {
+        $techno = $technoRepository->find($id);
+        return $this->render('admin/test/test-techno.html.twig', [
+            'tests' => $testRepository->findAll(),
+            'techno' => $techno
+        ]);
+    }
+
 }

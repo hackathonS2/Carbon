@@ -19,18 +19,12 @@ class TestType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('difficulte', IntegerType::class, [
-                'attr' => [
-                    'min' => 1,
-                    'max' => 3,
-                ],
-                'constraints' => [
-                    new Range([
-                        'min' => 1,
-                        'max' => 3,
-                        'notInRangeMessage' => 'La difficulté doit être comprise entre 1 et 3.',
-                    ]),
-                ],
+            ->add('difficulte', ChoiceType::class, [
+                'choices' => [
+                    'Starter' => 1,
+                    'Intermediate' => 2,
+                    'Expert'=> 3
+                ]
             ])
             ->add('actif',ChoiceType::class,[
                 'choices'  => [

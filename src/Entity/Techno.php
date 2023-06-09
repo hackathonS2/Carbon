@@ -19,10 +19,10 @@ class Techno
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'idTechno', targetEntity: Test::class)]
+    #[ORM\OneToMany(mappedBy: 'idTechno', targetEntity: Test::class,cascade: ['persist', 'remove'])]
     private Collection $tests;
 
-    #[ORM\OneToMany(mappedBy: 'idTechno', targetEntity: IndicateurTech::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'idTechno', targetEntity: IndicateurTech::class, orphanRemoval: true , )]
     private Collection $indicateurTechs;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

@@ -2,26 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Techno;
+use App\Entity\TestResults;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TechnoType extends AbstractType
+class TestResultsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('description')
-            ->add('urlFormation')
+            ->add('result')
+            ->add('date')
+            ->add('idTest')
+            ->add('idUser')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Techno::class,
+            'data_class' => TestResults::class,
         ]);
     }
 }
