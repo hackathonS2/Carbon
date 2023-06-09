@@ -221,14 +221,13 @@ class AppFixtures extends Fixture
         $tests = [];
 
         // add tests for each techno ranging from starter to expert
-        $difficulty_end_name = ['Starter', 'Intermediate', 'Expert'];
         $difficulty = [1, 2, 3];
         foreach ($technos as $techno) {
             for ($i = 0; $i < 3; $i++) {
                 $test = new Test();
                 $test->setIdTechno($techno);
                 $test->setActif(true);
-                $test->setNom($techno->getNom() . ' ' . $difficulty_end_name[$i]);
+                $test->setNom($techno->getNom());
                 $test->setDifficulte($difficulty[$i]);
                 $entity_manager->persist($test);
                 $tests[] = $test;
