@@ -38,5 +38,17 @@ class ConsultantController extends AbstractController
             'controller_name' => 'ConsultantController',
         ]);
     }
+    #[Route('/users', name: 'consultant_users')]
+    public function users(UserRepository $userRepository,TechnoRepository $technoRepository): Response
+    {   
+        $users = $userRepository->findAll();
+        //dump($technoRepository->findAll());
+        
+        return $this->render('consultant/profil/users.html.twig', [
+            'controller_name' => 'HomeController',
+            'technos' => $technoRepository->findAll(),
+            'users' => $users,
+        ]);
+    }
 
 }

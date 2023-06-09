@@ -5,6 +5,7 @@ use App\Repository\RecetteRepository;
 use App\Repository\UserRepository;
 use App\Repository\FavoritesRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Entity\Mission;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -63,9 +64,15 @@ class HomeController extends AbstractController
 
     #[Route('/profil', name: 'admin_profil')]
     public function profile_consultant(): Response
-    {
+    {   
+
+        $mission = new Mission();
+
+        //find mission by consultant
+
         return $this->render('admin/profil/index.html.twig', [
             'controller_name' => 'HomeController',
+            'missions' => $mission,
         ]);
     }
 
