@@ -39,6 +39,19 @@ class MissionRepository extends ServiceEntityRepository
         }
     }
 
+
+    /*find tests by techno id */
+
+    public function findByMissionId(int $id): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.consultant = :val')
+            ->setParameter('val', $id)
+            ->orderBy('t.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Mission[] Returns an array of Mission objects
 //     */

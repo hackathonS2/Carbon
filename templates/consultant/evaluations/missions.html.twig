@@ -1,0 +1,36 @@
+<div class="mt-4">
+	<ul class="flex flex-col px-4">
+		{% for mission in missions %}
+			<li class="flex flex-col mb-8 shadow-md p-8 mb-8">
+				<div class="flex flex-col justify-between w-full">
+
+					<div class="flex flex-row justify-between mb-4">
+						<h2 class="font-bold">{{ mission.nom }}</h2>
+						<div class="flex flex-row">
+							<p class="text-sm text-blue-400 mr-8">Start Date:
+								{{mission.dateDebut|date('d-m-Y')}}</p>
+							<p class="text-sm text-blue-400">End Date:
+								{{mission.dateFin|date('d-m-Y')}}</p>
+						</div>
+					</div>
+
+					<div class="flex w-full">
+						<p>
+							{{ mission.description}}
+						</p>
+					</div>
+
+					<!-- set if missions ongoings or ended based on period-->
+					<div class="flex flex-col w-full items-end">
+					{% if mission.dateFin > 'now' %}
+						<p class="text-sm text-green-400">ONGOING</p>
+					{% else %}
+						<p class="text-sm text-red-400">ENDED</p>
+					{% endif %}
+					</div>
+
+				</li>
+
+			{% endfor %}
+		</ul>
+	</div>

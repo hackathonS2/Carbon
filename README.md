@@ -10,7 +10,9 @@ docker compose exec php bin/console d:s:u --dump-sql
 ```
 
 # URL
-http://127.0.0.1
+
+<http://127.0.0.1>
 
 # Env DB
+
 DATABASE_URL="postgresql://postgres:password@db:5432/db?serverVersion=13&charset=utf8"

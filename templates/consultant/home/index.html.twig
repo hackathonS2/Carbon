@@ -7,11 +7,14 @@
 	<div class="flex consultant-container justify-center">
 		<div class="content w-full">
 			<div class="flex flex-col items-center ">
-
 				<div class="w-full mt-12 mb-8  bg-gray-100 rounded-full">
-
 					<div class="relative right-0">
 						<ul class="tabs relative flex flex-row  list-none rounded-lg bg-blue-gray-50/60 " data-tabs="tabs" role="list">
+                        	<li class="z-30 flex-auto text-center">
+								<a id="home" onclick="swithTab(event, 'Home')" class="tablinks text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center  border-0 bg-inherit px-0 py-2 transition-all ease-in-out" data-tab-target="" active role="tab" aria-selected="true">
+									<span class="ml-1">Home</span>
+								</a>
+							</li>
 							<li class="z-30 flex-auto text-center">
 								<a id="profil" onclick="swithTab(event, 'Profil')" class="tablinks text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center  border-0 bg-inherit px-0 py-2 transition-all ease-in-out" data-tab-target="" active role="tab" aria-selected="true">
 									<span class="ml-1">Profil</span>
@@ -23,13 +26,17 @@
 								</a>
 							</li>
 							<li class="z-30 flex-auto text-center">
-								<a onclick="swithTab(event, 'Missions')" class="tablinks text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center  border-0 bg-inherit px-0 py-2 transition-all ease-in-out" data-tab-target="" role="tab" aria-selected="false">
+								<a  onclick="swithTab(event, 'Missions')" class="tablinks text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center  border-0 bg-inherit px-0 py-2 transition-all ease-in-out" data-tab-target="" role="tab" aria-selected="false">
 									<span class="ml-1">Missions</span>
 								</a>
 							</li>
 
 						</ul>
 					</div>
+				</div>
+
+                <div id="Home" class="tabcontent w-full">
+			    	{% include('consultant/home/home.html.twig') %}
 				</div>
 
 				<div id="Profil" class="tabcontent w-full">
@@ -42,8 +49,7 @@
 				</div>
 
 				<div id="Missions" class="tabcontent w-full">
-					<h3>Missions</h3>
-					<p>Open Mes missions page</p>
+		         	{% include('consultant/evaluations/missions.html.twig') %}
 				</div>
 
 			</div>
@@ -53,7 +59,7 @@
 	<script>
 
 
-document.getElementById('profil').click();
+document.getElementById('home').click();
 
 
 function swithTab(evt, cityName) {
