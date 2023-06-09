@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Actualite;
 use App\Entity\Comments;
 use App\Entity\Mission;
 use App\Entity\SoftSkills;
@@ -263,6 +264,14 @@ class AppFixtures extends Fixture
                 $entity_manager->persist($indicateurTech);
                 $indicateurTechs[] = $indicateurTech;
             }
+        }
+
+        for ($i=0; $i< 35 ; $i++)
+        {
+            $actualite = new Actualite();
+            $actualite->setTitle($this->faker->title());
+            $actualite->setDescription($this->faker->realText($maxNbChars = 200, $indexSize = 2));
+            $entity_manager->persist($actualite);
         }
 
 
