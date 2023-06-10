@@ -4,13 +4,14 @@ namespace App\Controller\Admin;
 
 use App\Entity\TestResults;
 use App\Form\TestResultsType;
+use App\Repository\TestRepository;
 use App\Repository\TestResultsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/test/results')]
+#[Route('/admin/tests/results')]
 class TestResultsController extends AbstractController
 {
     #[Route('/', name: 'app_admin_test_results_index', methods: ['GET'])]
@@ -38,6 +39,16 @@ class TestResultsController extends AbstractController
             'test_result' => $testResult,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/show/{id}', name: 'app_admin_test_results_show_test', methods: ['GET'])]
+    public function show_resulte_test($id, TestRepository $testRepository)
+    {
+        $test = $testRepository->find($id);
+        return $this->render('admin/test_results/index.html.twig',[
+            'test' => $test
+        ]);
+
     }
 
     #[Route('/{id}', name: 'app_admin_test_results_show', methods: ['GET'])]
