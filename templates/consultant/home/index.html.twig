@@ -35,13 +35,17 @@
 					</div>
 				</div>
 
-                <div id="Home" class="tabcontent w-full">
-			    	{% include('consultant/home/home.html.twig') %}
+                <div id="Home" class="tabcontent ">
+					<div>
+			    		{% include('searchBar.html.twig') %}
+					</div>
 				</div>
 
-				<div id="Profil" class="tabcontent w-full">
-					<h3>Profil</h3>
-					<p>Open Profil page.</p>
+				<div id="Profil" class="tabcontent ">
+				<h1 class="text-center m-5 font-bold"> Voici ta carte de profil ! </h1>
+				<p class="text-center m-5 "> Screen la pour la partager. </h1>
+			    		{% include('card.html.twig') %}
+
 				</div>
 
 				<div id="Evaluations" class="tabcontent w-full">
@@ -56,7 +60,7 @@
 		</div>
 	</div>
 
-	<script>
+<script>
 
 
 document.getElementById('home').click();
@@ -72,11 +76,10 @@ tabcontent[i].style.display = "none";
 }
 tablinks = document.getElementsByClassName("tablinks");
 for (i = 0; i < tablinks.length; i++) {
-tablinks[i].className = tablinks[i].className.replace(" active bg-green-400 text-white rounded-full", "");
+tablinks[i].className = tablinks[i].className.replace("active  bg-[#E53F49] text-white rounded-full", "");
 }
 document.getElementById(cityName).style.display = "block";
-evt.currentTarget.className += " active bg-green-400 text-white rounded-full";
+evt.currentTarget.className += "active  bg-[#E53F49] text-white rounded-full";
 }
 	</script>
-
 {% endblock %}

@@ -1,0 +1,17 @@
+<div class="div-card-component m-20">
+<div class="card">
+	<div class="card__info">
+		<div class="card__logo text-center">{{app.user.nom}} {{app.user.prenom}}</div>
+
+		<div class="card__type">{{app.user.tel}}</div>
+		<div class="card__number">
+			<span class="card__digit-group text-sm">{{app.user.adresse}}</span>
+		</div>
+		<div class="card__valid-thru" aria-label="Valid thru"></div>
+		<div class="card__exp-date"><time datetime="2038-01"> Date de naissance : {{app.user.dateDeNaissance|date("Y-m-d")}}</time></div>
+		<div class="card__name" aria-label="Dee Stroyer">Souhait : {{app.user.salaireSouhaite}} €</div>
+
+	</div>
+	<div class="card__texture"></div>
+</div>
+</div>
