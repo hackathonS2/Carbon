@@ -42,9 +42,7 @@ class HomeController extends AbstractController
                 ]);
             }
         }else{
-            return $this->render('globalHome/globalHome.html.twig', [
-                'controller_name' => 'HomeController',
-            ]);
+            return $this->redirectToRoute('app_login');
         }
     }
 

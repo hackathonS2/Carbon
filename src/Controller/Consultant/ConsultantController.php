@@ -4,6 +4,7 @@ namespace App\Controller\Consultant;
 use App\Repository\RecetteRepository;
 use App\Repository\UserRepository;
 use App\Repository\FavoritesRepository;
+use App\Repository\SoftSkillsRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,24 +24,28 @@ class ConsultantController extends AbstractController
     }
 
     #[Route('/home', name: 'consultant_home')]
-    public function index_consultant(TechnoRepository $technoRepository, MissionRepository $missionRepository): Response
+    public function index_consultant(TechnoRepository $technoRepository, MissionRepository $missionRepository, SoftSkillsRepository $softskillrepo ): Response
     {
         $user_id =  $this->getUser()->getId();
+        $mySoftskillrepo = $softskillrepo->findBy(
+            ['idUser' => $user_id]
+        );
 
 
         return $this->render('consultant/home/index.html.twig', [
             'controller_name' => 'ConsultantController',
             'technos' => $technoRepository->findAll(),
-            'missions' => $missionRepository->findByMissionId($user_id)
+            'missions' => $missionRepository->findByMissionId($user_id),
+            'mySoftskills' => $mySoftskillrepo,
         ]);
     }
 
     #[Route('/profil', name: 'consultant_profil')]
     public function profile_consultant(): Response
     {
-        return $this->render('consultant/profil/index.html.twig', [
-            'controller_name' => 'ConsultantController',
-        ]);
+        return $this->redirectToRoute('consultant_home');
+
+
     }
     #[Route('/users', name: 'consultant_users')]
     public function users(UserRepository $userRepository,TechnoRepository $technoRepository): Response

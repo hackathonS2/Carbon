@@ -31,10 +31,10 @@ class EvaluationController extends AbstractController
     public function indexByTechno(TestRepository $testRepository,MissionRepository $missionRepository, TechnoRepository $technoRepository, $id): Response
     {
         $tech = $technoRepository->find($id); 
-        $monuser =  $this->getUser();
+        $monUser =  $this->getUser();
         $testResults = [];
         $techno = null;
-        foreach ($monuser->getTestResults() as $testResult) {
+        foreach ($monUser->getTestResults() as $testResult) {
             if ($testResult->getIdTest()->getIdTechno()->getId() == $id) {
                 $testResults[] = $testResult;
                 $techno = $testResult->getIdTest()->getIdTechno();
