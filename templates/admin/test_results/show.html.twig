@@ -21,10 +21,16 @@
             </tr>
         </tbody>
     </table>
-
+ {% if app.user.roles[0] == 'ROLE_ADMIN' %}
     <a href="{{ path('app_admin_test_results_index') }}">back to list</a>
 
     <a href="{{ path('app_admin_test_results_edit', {'id': test_result.id}) }}">edit</a>
+    {% endif %}
 
+ {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+     <a href="{{ path('app_operationnel_test_results_index') }}">back to list</a>
+
+    <a href="{{ path('app_operationnel_test_results_edit', {'id': test_result.id}) }}">edit</a>
+{% endif %}
     {{ include('admin/test_results/_delete_form.html.twig') }}
 {% endblock %}

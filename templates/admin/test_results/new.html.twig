@@ -6,6 +6,12 @@
     <h1>Create new TestResults</h1>
 
     {{ include('admin/test_results/_form.html.twig') }}
-
+ {% if app.user.roles[0] == 'ROLE_ADMIN' %}
     <a href="{{ path('app_admin_test_results_index') }}">back to list</a>
+    {% endif %}
+
+     {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+    <a href="{{ path('app_operationnel_test_results_index') }}">back to list</a>
+
+{% endif %}
 {% endblock %}

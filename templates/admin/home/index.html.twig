@@ -61,7 +61,14 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
                 </svg>                      
                 <div>
+                                   {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
                    <a href="{{path('admin_profil')}}">  Mon profil </a>
+                   {% endif %}
+                                   {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+                   <a href="{{path('operationnel_profil')}}">  Mon profil </a>
+
+{% endif %}
                 </div>
             </div>
             <div class =  "hover:ml-4 w-full text-white dark:hover:text-blue-500 bg-[#282B2A] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
@@ -108,7 +115,16 @@
         </nav>
         <div class = "flex flex-wrap my-5 -mx-2">
             <div class = "w-full lg:w-1/4 p-2">
+                                   {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
             <a href="{{path('admin_users')}}">
+            {% endif %}
+
+                                   {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+            <a href="{{path('operationnel_users')}}">
+
+            {% endif %}
+
 
                 <div class = "flex items-center flex-row w-full bg-[#282B2A] rounded-md p-3">
                     <div class = "flex text-indigo-500 dark:text-white items-center bg-[#282B2A] p-2 rounded-md flex-none w-8 h-8 md:w-12 md:h-12 ">
@@ -131,7 +147,14 @@
               </a>
             </div>
                         <div class = "w-full lg:w-1/4 p-2">
+                                   {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
             <a href="{{path('app_admin_actualite_index')}}">
+            {% endif %}
+                                   {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+            <a href="{{path('app_operationnel_actualite_index')}}">
+
+                                   {% endif %}
 
                 <div class = "flex items-center flex-row w-full bg-[#282B2A] rounded-md p-3">
                     <div class = "flex text-indigo-500 dark:text-white items-center bg-[#282B2A] p-2 rounded-md flex-none w-8 h-8 md:w-12 md:h-12 ">
@@ -177,7 +200,15 @@
                 </a>
             </div>
             <div class = "w-full md:w-1/2 lg:w-1/4 p-2">
+                                   {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
             <a href="{{path('app_admin_test_index')}}" >
+            {% endif %}
+                                   {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+            <a href="{{path('app_operationnel_test_index')}}" >
+
+            {% endif %}
+
                 <div class = "flex items-center flex-row w-full bg-[#282B2A] rounded-md p-3">
                     <div class = "flex text-indigo-500 p-2 rounded-md flex-none w-8 h-8 md:w-12 md:h-12 ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" class = "object-scale-down transition duration-500">

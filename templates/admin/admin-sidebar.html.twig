@@ -129,10 +129,20 @@
             </a>
         </li>
         <li>
+                                                                    {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+
+            <a href="{{ path("app_operationnel_test_index") }}" class="nav-link text-white">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+                Analytique
+            </a>
+{% endif %}
+
+                                                                        {% if app.user.roles[0] == 'ROLE_ADMIN' %}
             <a href="{{ path("app_admin_test_index") }}" class="nav-link text-white">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                 Analytique
             </a>
+{% endif %}
         </li>
         <li>
             <a href="#" class="nav-link text-white">
@@ -140,6 +150,8 @@
                 Fournisseur
             </a>
         </li>
+{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
         <li>
             <a href="{{ path('app_admin_test_index') }}" class="nav-link text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box2-fill me-2" viewBox="0 0 16 16">
@@ -154,6 +166,27 @@
                 Clients
             </a>
         </li>
+{% endif %}
+
+{% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+
+        <li>
+            <a href="{{ path('app_operationnel_test_index') }}" class="nav-link text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box2-fill me-2" viewBox="0 0 16 16">
+                    <path d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4h-8.5ZM15 4.667V5H1v-.333L1.5 4h6V1h1v3h6l.5.667Z"/>
+                </svg>
+                Dossiers
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('app_operationnel_test_index') }}" class="nav-link text-white">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+                Clients
+            </a>
+        </li>
+{% endif %}
+
+
     </ul>
     <hr>
     <div class="dropdown">

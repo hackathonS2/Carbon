@@ -21,8 +21,17 @@
                 <td>{{ test_result.result }}</td>
                 <td>{{ test_result.date ? test_result.date|date('Y-m-d') : '' }}</td>
                 <td>
+                     {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
                     <a href="{{ path('app_admin_test_results_show', {'id': test_result.id}) }}">show</a>
                     <a href="{{ path('app_admin_test_results_edit', {'id': test_result.id}) }}">edit</a>
+                    {% endif %}
+                    
+                    {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+
+                    <a href="{{ path('app_operationnel_test_results_show', {'id': test_result.id}) }}">show</a>
+                    <a href="{{ path('app_operationnel_test_results_edit', {'id': test_result.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -32,6 +41,12 @@
         {% endfor %}
         </tbody>
     </table>
+     {% if app.user.roles[0] == 'ROLE_ADMIN' %}
 
     <a href="{{ path('app_admin_test_results_new') }}">Create new</a>
+    {% endif  %}
+         {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+
+    <a href="{{ path('app_operationnel_test_results_new') }}">Create new</a>
+    {% endif  %}
 {% endblock %}
