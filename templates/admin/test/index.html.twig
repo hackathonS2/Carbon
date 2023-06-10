@@ -156,7 +156,7 @@
 									<p class="text-gray-900 whitespace-no-wrap">{{test.nom}}</p>
 								</td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">{{ test.testResults|length }}</p>
+                                    <a href="{{ path("app_admin_test_results_show_test",{'id' : test.id}) }}" style="background-color: #5B98D2;padding: 10px;border-radius: 10px; color: white; display: flex;gap: 8px;justify-content: center;" class="mb-5"><p class="text-gray-900 whitespace-no-wrap" style="color: white">{{ test.testResults|length }}</p></a>
                                 </td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
