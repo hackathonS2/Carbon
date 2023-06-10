@@ -8,8 +8,14 @@
     <h1 style="font-weight: bold; font-size: 1.3em;">Création nouveau test</h1>
 
     {{ include('admin/test/_form.html.twig') }}
+ {% if app.user.roles[0] == 'ROLE_ADMIN' %}
 
         <a href="{{ path('app_admin_test_index') }}" class="font-semibold text-indigo-600 hover:text-indigo-500 redlink ">Retourner à la liste</a>
+ {% endif %}
+ {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+         <a href="{{ path('app_operationnel_test_index') }}" class="font-semibold text-indigo-600 hover:text-indigo-500 redlink ">Retourner à la liste</a>
+ {% endif %}
+    
     </div>
 </div>
 {% endblock %}

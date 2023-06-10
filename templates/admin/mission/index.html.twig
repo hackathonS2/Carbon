@@ -29,8 +29,18 @@
                 <td>{{ mission.mailClient }}</td>
                 <td>{{ mission.note }}</td>
                 <td>
+                                   {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
                     <a href="{{ path('admin_mission_show', {'id': mission.id}) }}">show</a>
                     <a href="{{ path('admin_mission_edit', {'id': mission.id}) }}">edit</a>
+                    {% endif %}
+                                   {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+
+                    <a href="{{ path('operationnel_mission_show', {'id': mission.id}) }}">show</a>
+                    <a href="{{ path('operationnel_mission_edit', {'id': mission.id}) }}">edit</a>
+                    {% endif %}
+
+
                 </td>
             </tr>
         {% else %}
@@ -40,6 +50,13 @@
         {% endfor %}
         </tbody>
     </table>
+                                   {% if app.user.roles[0] == 'ROLE_ADMIN' %}
 
     <a href="{{ path('admin_mission_new') }}">Create new</a>
+    {% endif %}
+                                   {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+    <a href="{{ path('operationnel_mission_new') }}">Create new</a>
+
+
+    {% endif %}
 {% endblock %}
