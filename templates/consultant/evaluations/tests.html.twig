@@ -17,7 +17,7 @@
 							</li>
 							<li class="z-30 flex-auto text-center">
 								<a id="profil" onclick="swithTab(event, 'Profil')" class="tablinks text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center  border-0 bg-inherit px-0 py-2 transition-all ease-in-out" data-tab-target="" active role="tab" aria-selected="true">
-									<span class="ml-1">Carte Profil</span>
+									<span class="ml-1">Profil</span>
 								</a>
 							</li>
 							<li class="z-30 flex-auto text-center">
@@ -42,10 +42,9 @@
 				</div>
 
 				<div id="Profil" class="tabcontent ">
-				<h1 class="text-center m-5 font-bold"> Voici ta carte de profil ! </h1>
-				<p class="text-center m-5 "> Screen la pour la partager. </h1>
-			    		{% include('card.html.twig') %}
-
+				<h1 class="text-center m-5 font-bold"> Mon profil  </h1>
+			    		<div class="col ">{% include('consultant/profil/index.html.twig') %}</div>
+			    		{# <div class="col">{% include('card.html.twig') %}</div> #}
 				</div>
 
 

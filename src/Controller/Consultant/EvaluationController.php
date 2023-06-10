@@ -5,6 +5,8 @@ namespace App\Controller\Consultant;
 use App\Repository\RecetteRepository;
 use App\Repository\UserRepository;
 use App\Repository\FavoritesRepository;
+use App\Repository\SoftSkillsRepository;
+
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +30,7 @@ class EvaluationController extends AbstractController
 
     /**fetch all tests by techno id */
     #[Route('/consultant/home/formations/{id}', name: 'tests_by_techno', methods: ['GET'])]
-    public function indexByTechno(TestRepository $testRepository,MissionRepository $missionRepository, TechnoRepository $technoRepository, $id): Response
+    public function indexByTechno(TestRepository $testRepository,MissionRepository $missionRepository, TechnoRepository $technoRepository, SoftSkillsRepository $softskillrepo,  $id): Response
     {
         $tech = $technoRepository->find($id); 
         $monUser =  $this->getUser();
@@ -53,7 +55,9 @@ class EvaluationController extends AbstractController
         }, $testResults);
 
         $user_id =  $this->getUser()->getId();
-
+        $mySoftskillrepo = $softskillrepo->findBy(
+            ['idUser' => $user_id]
+        );
 
         return $this->render('consultant/evaluations/tests.html.twig', [
             'tests' => $testRepository->findByTechnoId($id),
@@ -61,7 +65,8 @@ class EvaluationController extends AbstractController
             'technos' => [],
             'missions' => $missionRepository->findByMissionId($user_id),
             'techno' => $techno,
-            'tech' => $tech
+            'tech' => $tech,
+            'mySoftskills' => $mySoftskillrepo,
         ]);
     }
 
