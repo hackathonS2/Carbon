@@ -36,24 +36,11 @@ input.forEach((input) => {
 <br>
 <br>
   <div class="flex flex-col">
-
-            {% for techno in technos %}
-                <div>
-                    
-                  <input type="checkbox" name="techno" value="{{ techno.id }}" id="{{ techno.id }}" class="techno">
-                    {{ techno.nom }}
-                  </input>
-                  <!--<input type="checkbox" name"soft-skill" valute="{# soft_skill.id #}" id="{#soft_skills.id #}" class="soft-skill"> 
-                  {# soft_skill.nom #}
-                  </input>-->
-                </div>
-                <br>
-            {% endfor %}
         </div>
-    <div style="width: 80%">
+    <div class="mt-5 justify-content-center text-center">
     
         <div>
-            <h1>Users</h1>
+            <h1>Liste utilisateurs</h1>
             <ul class="list-unstyled">
 
             <table class="table" style="border-spacing: 5px;">
@@ -64,7 +51,9 @@ input.forEach((input) => {
                     <th>prenom</th>
                     <th>email</th>
                     <td>softSkills</td>
-                    <td>Hardskill</td>
+                    <td>Evaluation Développeur</td>
+                    <td>Evaluation Client</td>
+                    <td>Profil</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -74,14 +63,15 @@ input.forEach((input) => {
                         <td>{{ user.nom }}</td>
                         <td>{{ user.prenom }}</td>
                         <td>{{ user.email }}</td>
-                        <td>{{ user.softSkills|length  }}</td>
-                        <td><span data-hardskill="1" >React</span>
-                    
-                          {% for testResult in user.testResults %}
-                            <span data-hardskill={{testResult.test.hardskill.id}} id={{testResult.test.hardskill.id}}> {{ testResult.test.hardskill.nom }}
-                            </span>
-                          {% endfor %}
+                        <td>
+                        {% for softSkill in user.softSkills %} 
+                                {{ softSkill.nom }}
+
+                        {% endfor %}
                         </td>
+                        <td>{{user.evalClient}}/5</td>
+                        <td>{{user.evalClientDev}}/5</td>
+                        <td><a href="{{ path('app_user_show', {'id': user.id}) }}">Profil</a></td>
 
                         
                 {% else %}

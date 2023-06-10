@@ -26,9 +26,17 @@
         </div>
         <ul class="md:px-2 ml-auto md:flex md:space-x-2 absolute md:relative top-full left-0 right-0">
             <li>
+                <a href="{{ path('consultant_users')}}" class="flex md:inline-flex p-4 items-center hover:bg-gray-50">
+                    <span>Liste utilisateurs</span>
+                </a>
+
+            </li>
+            <li>
                 <a href="{{path('planning_corporate')}}" class="flex md:inline-flex p-4 items-center hover:bg-gray-50">
                     <span>Planning</span>
                 </a>
+                <a href="{{ path('consultant_users')}}">Profil</a></td>
+
             </li>
             <li class="relative parent">
                 <a href="#" class="flex justify-between md:inline-flex p-4 items-center hover:bg-gray-50 space-x-2">
