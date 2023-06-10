@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/test/results')]
+#[Route('/admin/tests/results')]
 class TestResultsController extends AbstractController
 {
     #[Route('/', name: 'app_admin_test_results_index', methods: ['GET'])]
