@@ -50,10 +50,10 @@
 
 
 				<div id="Evaluations" class="tabcontent w-full">
-									<p class="justify-content-center text-center font-bold m-5" > Ici est listé tous les évaluations de la formation : {{techno.nom}}</p>
-									<a href="{{path('consultant_home')}}"  class="justify-content-center text-center font-bold m-4 " >Retourner à la liste des formations </a>
+									<p class="justify-content-center text-center font-bold m-10" > Ici est listé tous les évaluations de la formation : {{tech.nom}}</p>
+									<a href="{{path('consultant_home')}}"  class="text-red-500 outline font-bold py-2 px-4 rounded-full my-4	" >Retourner à la liste des formations </a>
 
-					<div class="flex flex-wrap mt-5">
+					<div class="flex flex-wrap mt-20">
 						{% for test in tests %}
 							<div class="flex flex-col justify-between items-center test-block  px-8 shadow-md mr-4 py-8">
 								<p class="font-bold text-center">{{ test.nom }}</p>
@@ -114,10 +114,10 @@
 						{% endfor %}
 
 						<div class="flex flex-col items-center test-block  px-8 shadow-md mr-4 py-8">
-							<p class="font-bold text-center">{{ techno.nom }}</p>
-							<p class="text-gray-500 text-sm line-clamp-3">{{ techno.description }}</p>
+							<p class="font-bold text-center">{{ tech.nom }}</p>
+							<p class="text-gray-500 text-sm line-clamp-3">{{ tech.description }}</p>
 							<button class="flex flex-row justify-center py-2 rounded-lg border-2 border-green-300 py-2 px-4 mt-20">
-								<a href="{{techno.urlFormation}}" target="_blank" class="text-gray-500 text-sm">Faire La Formation</a>
+								<a href="{{tech.urlFormation}}" target="_blank" class="text-gray-500 text-sm">Faire La Formation</a>
 							</button>
 						</div>
 					</div>
@@ -134,7 +134,7 @@
 <script>
 
 
-document.getElementById('home').click();
+document.getElementById('evaluations').click();
 
 
 function swithTab(evt, cityName) {

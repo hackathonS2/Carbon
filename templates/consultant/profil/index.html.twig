@@ -4,21 +4,14 @@
 
 {% block body %}
 
+
 <!-- component -->
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
 <main class="profile-page">
   <section class="relative block h-500-px">
-    <img class="absolute top-0 w-full h-full bg-center bg-cover" 
-            src=" {{asset('images/background.jpg')}} ">
-      <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
-    </div>
-    <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px" style="transform: translateZ(0px) ">
-      <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-        <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
-      </svg>
-    </div>
+
   </section>
   <section class="relative py-16 " style="background-color:#FDFDFD  ">
     <div class="container mx-auto px-4">
@@ -74,15 +67,7 @@
         </div>
       </div>
     </div>
-    <footer class="relative  pt-8 pb-6 mt-8" style="background-color:#FDFDFD">
-  <div class="container mx-auto px-4">
-    <div class="flex flex-wrap items-center md:justify-between justify-center">
-      <div class="w-full md:w-6/12 px-4 mx-auto text-center">
-        <div class="text-sm text-white font-semibold py-1"><img src=" {{ asset('images/LogoClientGris.png') }}"></img></div>
-      </div>
-    </div>
-  </div>
-</footer>
+   
   </section>
 </main>
 {% endblock %}

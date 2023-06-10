@@ -28,8 +28,9 @@ class EvaluationController extends AbstractController
 
     /**fetch all tests by techno id */
     #[Route('/consultant/home/formations/{id}', name: 'tests_by_techno', methods: ['GET'])]
-    public function indexByTechno(TestRepository $testRepository,MissionRepository $missionRepository, $id): Response
+    public function indexByTechno(TestRepository $testRepository,MissionRepository $missionRepository, TechnoRepository $technoRepository, $id): Response
     {
+        $tech = $technoRepository->find($id); 
         $monuser =  $this->getUser();
         $testResults = [];
         $techno = null;
@@ -59,7 +60,8 @@ class EvaluationController extends AbstractController
             'testResults' => $testResults,
             'technos' => [],
             'missions' => $missionRepository->findByMissionId($user_id),
-            'techno' => $techno
+            'techno' => $techno,
+            'tech' => $tech
         ]);
     }
 
