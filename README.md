@@ -3,6 +3,8 @@
 ```bash
 docker compose build --pull --no-cache
 docker compose up -d
+docker compose exec php yarn install
+docker compose exec php yarn run dev
 docker compose exec php bin/console make:mig
 docker compose exec php bin/console d:m:m
 docker compose exec php bin/console d:f:l --no-interaction
@@ -11,7 +13,7 @@ docker compose exec php bin/console d:s:u --dump-sql
 
 # URL
 
-<http://127.0.0.1>
+<http://127.0.0.1:8080>
 
 # Env DB
 
