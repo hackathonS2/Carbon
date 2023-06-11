@@ -105,6 +105,20 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $entity_manager)
     {
 
+        $url =[
+            'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png',
+            'https://cdn-icons-png.flaticon.com/512/147/147142.png',
+            'https://static.vecteezy.com/system/resources/previews/006/487/917/original/man-avatar-icon-free-vector.jpg',
+            'https://cdn-icons-png.flaticon.com/512/5556/5556468.png',
+            'https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png',
+            'https://cdn.icon-icons.com/icons2/1371/PNG/512/batman_90804.png',
+            'https://www.svgrepo.com/show/382106/male-avatar-boy-face-man-user-9.svg',
+            'https://cdn.icon-icons.com/icons2/3708/PNG/512/man_person_people_avatar_icon_230017.png',
+            'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/11_avatar-512.png',
+            'https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png',
+            'https://cdn-icons-png.flaticon.com/512/3641/3641963.png'
+        ];
+
         /** users fixtures **/
 
         $users = [];
@@ -119,6 +133,8 @@ class AppFixtures extends Fixture
         $user->setTel('0606060606');
         $user->setAdresse($this->faker->address());
         $user->setIsVerified(true);
+        $user->setAvatar("http://i.pravatar.cc/103");
+        $user->setImgUrl($url[mt_rand(0,10)]);
         $entity_manager->persist($user);
         $users[] = $user;
  
@@ -131,6 +147,8 @@ class AppFixtures extends Fixture
         $user->setPrenom('operationnel');
         $user->setTel('0606060606');
         $user->setAdresse($this->faker->address());
+        $user->setAvatar("http://i.pravatar.cc/104");
+        $user->setImgUrl($url[mt_rand(0,10)]);
         $user->setIsVerified(true);
         $entity_manager->persist($user);
         $users[] = $user;
@@ -148,8 +166,8 @@ class AppFixtures extends Fixture
             'https://cdn-icons-png.flaticon.com/512/3641/3641963.png'
         ];
 
-        
-        // create users with OPERATIONNEL
+
+        // create users with CONSULTANT
         $user = new User();
         $user->setEmail('consultant@consultant.fr');
         $user->setPassword($this->hasher->hashPassword($user, 'consultant'));
@@ -178,6 +196,11 @@ class AppFixtures extends Fixture
         // create a list of users with ROLE_CONSULTANT
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
+
+
+            $picture = 'http://i.pravatar.cc/';
+            $pictureId = $this->faker->numberBetween(105, 300);
+
             $user->setEmail($this->faker->email());
             $user->setPassword($this->hasher->hashPassword($user, 'consultant'));
             $user->setRoles(['ROLE_CONSULTANT']);
@@ -187,6 +210,7 @@ class AppFixtures extends Fixture
             $user->setTel($this->faker->phoneNumber());
             $user->setAdresse($this->faker->address());
             $user->setDescription($this->faker->text(100));
+            $user->setAvatar($picture . $pictureId);
             $user->setSalaireSouhaite($this->faker->numberBetween(35000, 150000));
             $user->setEvalClient($this->faker->numberBetween(0, 5));
             $user->setEvalClientDev($this->faker->numberBetween(0, 5));
@@ -220,7 +244,7 @@ class AppFixtures extends Fixture
 
         $missions = [];
 
-        // create 3 missions for every users
+        // create 3 missions for every users note 2 of them
         foreach ($users as $user) {
             for ($i = 0; $i < 3; $i++) {
                 $mission = new Mission();
@@ -229,7 +253,9 @@ class AppFixtures extends Fixture
                 $mission->setDateFin( new \DateTime('now + 12 month'));
                 $mission->setMailClient($this->faker->email());
                 $mission->setDescription($this->faker->realTextBetween($minNbChars = 360, $maxNbChars = 500, $indexSize = 2));
-                $mission->setNote($this->faker->numberBetween(0, 5));
+               if($i > 0){
+                $mission->setNote($this->faker->numberBetween(1, 5));
+               }
                 $mission->setConsultant($user);
                 $entity_manager->persist($mission);
                 $missions[] = $mission;
