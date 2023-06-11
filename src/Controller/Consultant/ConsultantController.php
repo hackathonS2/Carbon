@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\TechnoRepository;
 use App\Repository\MissionRepository;
+use App\Entity\User;
 
 #[Route('/consultant')]
 class ConsultantController extends AbstractController
