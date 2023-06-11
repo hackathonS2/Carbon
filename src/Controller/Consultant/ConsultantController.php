@@ -32,6 +32,8 @@ class ConsultantController extends AbstractController
         );
 
         $searchQuery = $request->query->get('q'); // Récupère le terme de recherche depuis la requête
+        if($searchQuery == null) $searchQuery="";
+
         $users = $userRepo->searchBy($searchQuery);
 
         return $this->render('consultant/home/index.html.twig', [
