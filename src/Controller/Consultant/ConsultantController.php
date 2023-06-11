@@ -24,19 +24,22 @@ class ConsultantController extends AbstractController
     }
 
     #[Route('/home', name: 'consultant_home')]
-    public function index_consultant(TechnoRepository $technoRepository, MissionRepository $missionRepository, SoftSkillsRepository $softskillrepo ): Response
+    public function index_consultant(Request $request, TechnoRepository $technoRepository, MissionRepository $missionRepository, SoftSkillsRepository $softskillrepo, UserRepository $userRepo ): Response
     {
         $user_id =  $this->getUser()->getId();
         $mySoftskillrepo = $softskillrepo->findBy(
             ['idUser' => $user_id]
         );
 
+        $searchQuery = $request->query->get('q'); // Récupère le terme de recherche depuis la requête
+        $users = $userRepo->searchBy($searchQuery);
 
         return $this->render('consultant/home/index.html.twig', [
             'controller_name' => 'ConsultantController',
             'technos' => $technoRepository->findAll(),
             'missions' => $missionRepository->findByMissionId($user_id),
             'mySoftskills' => $mySoftskillrepo,
+            'users' => $users,
         ]);
     }
 

@@ -57,7 +57,24 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
 
-    
+/**
+ * Recherche des utilisateurs par leur nom, prénom et email
+ * @param string $keyword
+ * @return User[]
+ */
+public function searchBy(string $keyword): array
+{
+    $queryBuilder = $this->createQueryBuilder('u');
+
+    $queryBuilder->where('u.nom LIKE :keyword')
+        ->orWhere('u.prenom LIKE :keyword')
+        ->orWhere('u.email LIKE :keyword')
+        ->setParameter('keyword', '%'.$keyword.'%');
+
+    return $queryBuilder->getQuery()->getResult();
+}
+
+
 
 //    /**
 //     * @return User[] Returns an array of User objects
