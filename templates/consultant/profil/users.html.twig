@@ -71,7 +71,11 @@ input.forEach((input) => {
                         </td>
                         <td>{{user.evalClient}}/5</td>
                         <td>{{user.evalClientDev}}/5</td>
-                        <td><a href="{{ path('app_user_show', {'id': user.id}) }}">Profil</a></td>
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_OPERATIONNEL') %}
+                            <td><a href="{{ path('app_user_show', {'id': user.id}) }}">Profil</a></td>
+                        {% else %}
+                            <td><a href="{{ path('app_consultant_user', {'id': user.id}) }}">Profil</a></td>
+                        {% endif %}
 
                         
                 {% else %}
