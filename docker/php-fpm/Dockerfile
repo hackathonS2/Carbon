@@ -24,12 +24,12 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www
 
 
-CMD composer i -o ; wait-for-it db:5432 -- bin/console doctrine:migrations:migrate ;  php-fpm
+CMD composer i -o ; wait-for-it db:5432 -- bin/console doctrine:migrations:migrate ;  php-fpm; yarn run dev;
 
 RUN composer require symfony/webpack-encore-bundle && yarn install
 
 RUN yarn add postcss-loader autoprefixer --dev && yarn add tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat --dev 
-#RUN yarn watch
+
 
 
 EXPOSE 9000
