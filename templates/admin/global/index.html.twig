@@ -8,7 +8,7 @@
                     {% for user in users %}
                         {% set ramdonNumber = random(1,17) %}
 
-                        <div style="width: 400px;box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);border-radius: 20px;">
+                        <div style="width: 400px;box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);border-radius: 20px;padding-bottom: 8px;">
                             <div style="height: 200px;background-color: #5B98D2; background-image:url('{{ asset('images/lol/' ~ ramdonNumber ~'.png') }}');background-size: cover;border-radius: 20px;"> </div>
                             {% if user.imgUrl != null %}
                                 <img src="{{ user.imgUrl }}" width="100px" style="margin: auto;position:relative;top: -50px">
@@ -61,7 +61,12 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">
+                                <button style="background-color: #5B98D2;padding: 10px;border-radius: 10px; color: white; display: flex;gap: 8px;margin:auto;" class="mb-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+                                    Edit
+                                </button>
+                            </a>
                         </div>
                     {% endfor %}
                 </div>

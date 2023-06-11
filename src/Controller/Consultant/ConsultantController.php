@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\TechnoRepository;
 use App\Repository\MissionRepository;
 use App\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/consultant')]
 class ConsultantController extends AbstractController
@@ -43,6 +44,14 @@ class ConsultantController extends AbstractController
             'missions' => $missionRepository->findByMissionId($user_id),
             'mySoftskills' => $mySoftskillrepo,
             'users' => $users,
+        ]);
+    }
+
+    #[Route('/mestest', name: 'consultant_mestest')]
+    public function mestest(UserInterface $user)
+    {
+        return $this->render('consultant/mesTests/index.html.twig',[
+            'user' => $user
         ]);
     }
 

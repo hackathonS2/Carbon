@@ -1,0 +1,60 @@
+{% extends 'consultant/consultant.html.twig' %}
+{% block body %}
+    <div style="width: 100%;background-color:#f9f8fd ">
+
+
+    <div style="margin: 100px auto;width: 1000px;">
+        {% for testResult in user.testResults %}
+            <div style="border: 1px solid #5B98D2;border-radius: 20px; margin: 20px 0px; padding: 20px;background-color: white;box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -2px rgba(0, 0, 0, .1);height: 136px;">
+                <div style="display: flex; justify-content: space-between;">
+                    <p style="font-weight: bold;font-size: 1.4em;width: 150px;">{{ testResult.idTest.nom }}</p>
+                    <p style="font-weight: bold;font-size: 1.4em;">Note : {{ testResult.result }} / 100</p>
+                    <p>Note Validant : 60/100</p>
+                </div>
+                <div style="display: flex;justify-content: space-between;align-items: center">
+                    <div style="width: 150px">
+                        {% if testResult.result >= 60  %}
+                            {% if testResult.idTest.difficulte == 1 %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 512 512"><path fill="#cd7f32" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176s176-78.8 176-176s-78.8-176-176-176zm92.52 157.26l-37.93 36.96l8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22l-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64l23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39c4.11 0 8.22 2.14 10.33 6.39l23.43 47.52l52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"/></svg>
+                            {% elseif testResult.idTest.difficulte == 2 %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 512 512"><path fill="silver" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176s176-78.8 176-176s-78.8-176-176-176zm92.52 157.26l-37.93 36.96l8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22l-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64l23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39c4.11 0 8.22 2.14 10.33 6.39l23.43 47.52l52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"/></svg>
+                            {% elseif testResult.idTest.difficulte == 3 %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 512 512"><path fill="#f2d350" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176s176-78.8 176-176s-78.8-176-176-176zm92.52 157.26l-37.93 36.96l8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22l-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64l23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39c4.11 0 8.22 2.14 10.33 6.39l23.43 47.52l52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"/></svg>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                    <div>
+                        <p>Date Passage : {{  testResult.createdAt|date("d-m-Y")   }}</p>
+                    </div>
+                    <div>
+                        {% if testResult.result >= 60 %}
+                            <span
+                                    class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                              class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                        <span class="relative">Validé</span></span>
+                        {% else %}
+                            <span
+                                    class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                        <span aria-hidden
+                                              class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+									<span class="relative">Non Valide</span>
+									</span>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <p>Niveau :
+                    {% if testResult.idTest.difficulte == 1 %}
+                        Starter
+                    {% elseif testResult.idTest.difficulte == 2  %}
+                        Intermediate
+                    {% elseif testResult.idTest.difficulte == 3 %}
+                        Expert
+                    {% endif %}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}
