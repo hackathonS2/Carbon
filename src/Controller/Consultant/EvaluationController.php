@@ -42,7 +42,7 @@ class EvaluationController extends AbstractController
             if ($mestest->getIdTest()->getNom() == $test->getNom())
             {
                 $this->addFlash('error',"Vous avec déjà passer ce test");
-                return $this->redirectToRoute('tests_by_techno',['id'=> $test->getId()]);
+                return $this->redirectToRoute('tests_by_techno',['id'=> $test->getIdTechno()->getId()]);
             }
         }
         $testresult = new TestResults();
@@ -73,7 +73,7 @@ class EvaluationController extends AbstractController
         {
             $this->addFlash('error',"Dommage, Vous avec passé le test $testnom de niveau $niv, Vous aves eu $note/100, Vous n'avez pas eu le diplôme");
         }
-        return $this->redirectToRoute('tests_by_techno',['id'=> $test->getId()]);
+        return $this->redirectToRoute('tests_by_techno',['id'=> $test->getIdTechno()->getId()]);
 
     }
 
