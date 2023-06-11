@@ -15,6 +15,21 @@ docker compose exec php bin/console d:s:u --dump-sql
 
 <http://127.0.0.1:8080>
 
+# COMPTE D'ACCES
+
+admin :
+- admin@admin.fr
+- admin
+
+
+operationnel :
+- operationnel@operationnel.fr
+- operationnel
+
+consultant :
+- consultant@consultant.fr
+- consultant
+
 # Env DB
 
 DATABASE_URL="postgresql://postgres:password@db:5432/db?serverVersion=13&charset=utf8"
