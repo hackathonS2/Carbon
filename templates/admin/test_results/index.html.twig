@@ -109,10 +109,73 @@
                 </div>
             </div>
 
-    <a href="{{ path('app_admin_test_results_new') }}">Create new</a>
-                    {% endif %}
-                                         {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
-    <a href="{{ path('app_operationnel_test_results_new') }}">Create new</a>
+
+
+    {# <main class="d-flex flex-nowrap">
+    {% include '/admin/admin-sidebar.html.twig' %}
+    <div style="width: 100%">
+        <div>
+            <div class="d-flex justify-content-between align-content-center align-items-center" style="width: 100%">
+                <h1 class="m-4" style="color: #5B98D2;">
+                    Les Sessions de Tests
+                </h1>
+                <div class="me-5">
+                    <button type="button" class="btn" style="background-color:#5B98D2;color: white;box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); ">
+                        <a href="{{ path('app_admin_test_new') }}" style="text-decoration: none;color: white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/></svg> Nouveau Test
+                        </a>
+                    </button>
+                </div>
+            </div>
+
+            <div class="admin-header-filtre d-flex flex-wrap" style="box-shadow: 0px 4px 8px #f4f5f7">
+                <div class="admin-header-filtre-status">
+                    <svg class="admin-svg-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48"><mask id="ipTDataAll0"><g fill="#555" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><ellipse cx="24" cy="11" rx="20" ry="6"/><path d="M10.77 15.5C6.62 16.6 4 18.208 4 20c0 3.314 8.954 6 20 6s20-2.686 20-6c0-1.792-2.619-3.4-6.77-4.5c-3.526.933-8.158 1.5-13.23 1.5c-5.072 0-9.704-.567-13.23-1.5Z"/><path d="M10.77 24.5C6.62 25.6 4 27.208 4 29c0 3.314 8.954 6 20 6s20-2.686 20-6c0-1.792-2.619-3.4-6.77-4.5c-3.526.933-8.158 1.5-13.23 1.5c-5.072 0-9.704-.567-13.23-1.5Z"/><path d="M10.77 33.5C6.62 34.6 4 36.208 4 38c0 3.314 8.954 6 20 6s20-2.686 20-6c0-1.792-2.619-3.4-6.77-4.5c-3.526.934-8.158 1.5-13.23 1.5c-5.072 0-9.704-.566-13.23-1.5Z"/></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipTDataAll0)"/></svg>
+                    <a href="#" style="margin-left: 0">
+                        Status :
+                    </a>
+                </div>
+
+                <a href="#">
+                    Actifs
+                </a>
+                <a href="#">
+                    Terminé
+                </a>
+            </div>
+
+        </div>
+
+        <div class="admin-main-section">
+            <div class="d-flex justify-content-around admin-table-list-header" style="background-color: white;margin:10px 0px;padding: 10px;border-radius: 10px">
+                <div style="display: flex;align-items: center;gap: 10px; width: 10%">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"><path fill="#5b98d2" d="M160 16a80.07 80.07 0 0 0-76.09 104.78l-57.57 57.56A8 8 0 0 0 24 184v40a8 8 0 0 0 8 8h40a8 8 0 0 0 8-8v-16h16a8 8 0 0 0 8-8v-16h16a8 8 0 0 0 5.66-2.34l9.56-9.57A80 80 0 1 0 160 16Zm20 76a16 16 0 1 1 16-16a16 16 0 0 1-16 16Z"/></svg>
+                    <p style="margin: 0">
+                        id
+                    </p>
+                </div>
+                <div style="display: flex;align-items: center;gap: 10px;width: 20%">
+                    <svg class="admin-svg-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#5b98d2" d="M12 6a1 1 0 1 1-1 1a1 1 0 0 1 1-1zm-6 8h12v3H6zm14-8h-4V3H8v3H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM10 5h4v5h-4zm10 14H4v-9h4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2h4z"/></svg>
+                    <p style="margin: 0">Name</p>
+                </div>
+                <div style="display: flex;align-items: center;gap: 10px;width: 15%">
+                    <svg class="admin-svg-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48"><mask id="ipSLevel0"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path fill="#fff" stroke="#fff" d="M24 42L4 18.5L9.695 6h28.61L44 18.5L24 42Z"/><path stroke="#000" d="m32 18l-8 9l-8-9"/></g></mask><path fill="#5b98d2" d="M0 0h48v48H0z" mask="url(#ipSLevel0)"/></svg>
+                    <p style="margin: 0">Difficulte</p>
+                </div>
+                <div style="display: flex;align-items: center;gap: 10px;width: 15%">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16"><path fill="#5b98d2" d="M1 5.5A2.5 2.5 0 0 1 3.5 3h9A2.5 2.5 0 0 1 15 5.5v4a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 9.5v-4Zm6 2a.5.5 0 0 0 .5.5H12a.5.5 0 0 0 0-1H7.5a.5.5 0 0 0-.5.5Zm-1 0a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0Z"/></svg>
+                    <p style="margin: 0">Actif</p>
+                </div>
+                <div style="display: flex;align-items: center;gap: 10px;width: 15%">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 36 36"><path fill="#5b98d2" d="M32.25 6h-4v3a2.2 2.2 0 1 1-4.4 0V6H12.2v3a2.2 2.2 0 0 1-4.4 0V6h-4A1.78 1.78 0 0 0 2 7.81v22.38A1.78 1.78 0 0 0 3.75 32h28.5A1.78 1.78 0 0 0 34 30.19V7.81A1.78 1.78 0 0 0 32.25 6ZM10 26H8v-2h2Zm0-5H8v-2h2Zm0-5H8v-2h2Zm6 10h-2v-2h2Zm0-5h-2v-2h2Zm0-5h-2v-2h2Zm6 10h-2v-2h2Zm0-5h-2v-2h2Zm0-5h-2v-2h2Zm6 10h-2v-2h2Zm0-5h-2v-2h2Zm0-5h-2v-2h2Z" class="clr-i-solid clr-i-solid-path-1"/><path fill="#5b98d2" d="M10 10a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1Z" class="clr-i-solid clr-i-solid-path-2"/><path fill="#5b98d2" d="M26 10a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1Z" class="clr-i-solid clr-i-solid-path-3"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+                    <p style="margin: 0">Début du test</p>
+                </div>
+                <div style="display: flex;align-items: center;gap: 10px;width: 15%">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#5b98d2" d="M6 17h12v-3H6v3Zm-2 3q-.825 0-1.413-.588T2 18V6q0-.825.588-1.413T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.588 1.413T20 20H4Z"/></svg>
+                    <p style="margin: 0">Action</p>
+                </div>
+            </div>
 
                     {% endif %}
 
