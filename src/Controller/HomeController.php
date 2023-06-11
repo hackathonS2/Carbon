@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Repository\RecetteRepository;
 use App\Repository\UserRepository;
 use App\Repository\FavoritesRepository;
+use Faker\Factory;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Mission;
 use Symfony\Component\Security\Core\Security;

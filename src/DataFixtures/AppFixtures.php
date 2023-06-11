@@ -97,6 +97,8 @@ class AppFixtures extends Fixture
             "Android",
             "iOS"
         ];
+
+
     }
 
 
@@ -132,7 +134,19 @@ class AppFixtures extends Fixture
         $user->setIsVerified(true);
         $entity_manager->persist($user);
         $users[] = $user;
-
+        $url =[
+            'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png',
+            'https://cdn-icons-png.flaticon.com/512/147/147142.png',
+            'https://static.vecteezy.com/system/resources/previews/006/487/917/original/man-avatar-icon-free-vector.jpg',
+            'https://cdn-icons-png.flaticon.com/512/5556/5556468.png',
+            'https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png',
+            'https://cdn.icon-icons.com/icons2/1371/PNG/512/batman_90804.png',
+            'https://www.svgrepo.com/show/382106/male-avatar-boy-face-man-user-9.svg',
+            'https://cdn.icon-icons.com/icons2/3708/PNG/512/man_person_people_avatar_icon_230017.png',
+            'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/11_avatar-512.png',
+            'https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png',
+            'https://cdn-icons-png.flaticon.com/512/3641/3641963.png'
+        ];
         // create a list of users with ROLE_CONSULTANT
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
@@ -152,6 +166,7 @@ class AppFixtures extends Fixture
             $user->setLinkLinkedin($this->faker->url());
             $user->setLinkSlack($this->faker->url());
             $user->setIsVerified(true);
+            $user->setImgUrl($url[$i]);
             $entity_manager->persist($user);
             $users[] = $user;
         }
