@@ -7,20 +7,21 @@
 	<!-- full tailwind config using javascript -->
 	<!-- https://github.com/neurolinker/popice -->
 
-		<body class="body bg-white dark:bg-[#282B2A]"> <div class="fixed w-full z-30 flex bg-white dark:bg-[#282B2A] p-2 items-center justify-center h-16 px-10">
-			<div class="logo ml-12 dark:text-white  transform ease-in-out duration-500 flex-none h-full flex items-center justify-center">
-				<b>Carbon</b>
-			</div>
-			<!-- SPACER -->
-			<div class="grow h-full flex items-center justify-center"></div>
-			<div class="flex-none h-full text-center flex items-center justify-center">
-
-				<div class="flex space-x-3 items-center px-3">
-					<div class="flex-none flex justify-center">
-						<div class="w-8 h-8 flex ">
-							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShta_GXR2xdnsxSzj_GTcJHcNykjVKrCBrZ9qouUl0usuJWG2Rpr_PbTDu3sA9auNUH64&usqp=CAU" alt="profile" class="shadow rounded-full object-cover"/>
-						</div>
-					</div>
+<body class = "body bg-white ">
+    <div class = "fixed w-full z-30 flex bg-white p-2 items-center justify-center h-16 px-10">
+        <div class = "logo ml-12 dark:text-white  transform ease-in-out duration-500 flex-none h-full flex items-center justify-center">
+            <b>Carbon</b>
+        </div>
+        <!-- SPACER -->
+        <div class = "grow h-full flex items-center justify-center"></div>
+        <div class = "flex-none h-full text-center flex items-center justify-center">
+            
+                <div class = "flex space-x-3 items-center px-3">
+                    <div class = "flex-none flex justify-center">
+                    <div class="w-8 h-8 flex ">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShta_GXR2xdnsxSzj_GTcJHcNykjVKrCBrZ9qouUl0usuJWG2Rpr_PbTDu3sA9auNUH64&usqp=CAU" alt="profile" class="shadow rounded-full object-cover" />
+                    </div>
+                    </div>
 
 					<div class="hidden md:block text-sm md:text-md text-black dark:text-white">{{app.user.nom}}</div>
 				</div>
@@ -149,7 +150,7 @@
 					</div>
 				</a>
 
-				<a href="{{path('app_note_client_index')}}">
+				<a href="{{path('app_note_client_index')}}" class="pt-4">
 					<div class="flex items-center flex-row w-full bg-[#282B2A] rounded-md p-3">
 						<div class="flex text-indigo-500 p-2 rounded-md flex-none w-8 h-8 md:w-12 md:h-12 ">
 							<svg fill="#ffffff" width="32px" height="32px" viewbox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
