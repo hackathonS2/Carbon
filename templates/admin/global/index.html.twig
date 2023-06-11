@@ -88,114 +88,73 @@
         
     </aside>
 <!-- component -->
-    <div class = "content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 ">
+    <div class = "content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 " style="background-color: #f9f8fd;">
 
-<div class="bg-white p-8 rounded-md w-full">
-	<div class=" flex items-center justify-between pb-6">
-		<div>
-			<h2 class="text-gray-600 font-semibold">Utilisateurs</h2>
-			<span class="text-xs">Liste des utilisateurs</span>
-		</div>
-		<div class="flex items-center justify-between">
+        <div class="bg-white p-8 rounded-md w-full" style="background-color: #f9f8fd;">
+            <div class=" flex items-center justify-between pb-6">
+                <div style="display:flex; flex-wrap: wrap; gap: 10px;justify-content: center;">
+                    {% for user in users %}
+                        {% set ramdonNumber = random(1,17) %}
 
-				<div class=" ">
-					<a href="{{ path('app_admin_test_new') }}" style="height:50px;" class=" cta bg-[#e53f49]  rounded-md text-white text-base font-semibold tracking-wide cursor-pointer">Nouveau utilisateurs</a>
-				</div>
-			</div>
-		</div>
-		<div>
-			<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-				<div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-					<table class="min-w-full leading-normal">
-						<thead>
-							<tr>
-								<th
-									class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Id
-								</th>
-								<th
-									class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Nom
-								</th>
-                                <th
-									class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Prenom
-								</th>
-                                <th
-									class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Date de naissance
-								</th>
-								<th
-									class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Verification
-								</th>
-                                <th
-									class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Actions
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-                        {% for user in users %}
-							<tr>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<div class="flex items-center">
-	
-											<div class="ml-3">
-												<p class="text-gray-900 whitespace-no-wrap">
-													{{user.id}}
-												</p>
-											</div>
-										</div>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">{{user.nom}}</p>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    							
-									<p class="text-gray-900 whitespace-no-wrap">
-                                    {{user.prenom}}
-                                    </p>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">
-                                    {{user.dateDeNaissance|date("Y-m-d")}}
-									</p>
-								</td>
-                                
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">
-										{% if user.isVerified %}
-                                        <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-									<span class="relative">Vérifié</span>
-									</span>
-                                        {% else %}
-                                        <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
-									<span class="relative">Non vérifié</span>
-									</span>
+                        <div style="width: 400px;box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);border-radius: 20px;">
+                            <div style="height: 200px;background-color: #5B98D2; background-image:url('{{ asset('images/lol/' ~ ramdonNumber ~'.png') }}');background-size: cover;border-radius: 20px;"> </div>
+                            {% if user.imgUrl != null %}
+                                <img src="{{ user.imgUrl }}" width="100px" style="margin: auto;position:relative;top: -50px">
+                            {% else %}
+                                <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" width="100px" style="margin: auto;position:relative;top: -50px">
+                            {% endif %}
+                            <div style="padding: 10px">
+                                <h1 style="font-weight: bold;font-size: 1.4em;position: relative;top: -40px;">{{ user.nom|capitalize }} {{ user.prenom|capitalize }}</h1>
+                                <h2 style="font-size: 1.2em;font-weight: 500;">Soft Skills : </h2>
+                                <div style="height: 120px;">
+                                    <div style="display: flex;flex-wrap: wrap;gap: 5px;">
+                                        {% for softskill in user.softSkills %}
+                                            <p style="border-radius: 20px;border: 1px solid #5B98D2;padding: 5px" > {{ softskill.nom }} </p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <h2 style="font-size: 1.2em;font-weight: 500;margin-top: 20px;">Hard Skills : </h2>
+                                {% set medor = 0 %}
+                                {% set medsilver = 0 %}
+                                {% set medbronze = 0 %}
+                                {% for testresult in user.testResults %}
+                                    {% if testresult.result >=60 %}
+                                        {% if testresult.idTest.difficulte == 1 %}
+                                            {% set medbronze = medbronze +1 %}
+                                        {% elseif testresult.idTest.difficulte == 2 %}
+                                            {% set medsilver = medbronze +1 %}
+                                        {% elseif testresult.idTest.difficulte == 3 %}
+                                            {% set medor = medbronze +1 %}
                                         {% endif %}
-									</p>
-								</td>
+                                    {% endif %}
+                                {% endfor %}
+                                <div style="border-radius: 20px;width: 100%;margin: auto;background-color: white;margin-top: 50px;padding:20px">
+                                    <div style="display: flex;justify-content: space-evenly">
+                                        <div style="display: flex;flex-direction:row;justify-content: center;width: 300px;justify-items: center;align-items: center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"><path fill="#f2d350" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176s176-78.8 176-176s-78.8-176-176-176zm92.52 157.26l-37.93 36.96l8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22l-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64l23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39c4.11 0 8.22 2.14 10.33 6.39l23.43 47.52l52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"/></svg>
 
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <a href="{{ path('app_user_show', {'id': user.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#5b98d2" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg></a>
-                                    {{ include('user/_delete_form.html.twig') }}
-                                </td>
-							</tr>
-                        {% endfor %}
-						</tbody>
-					</table>
+                                            <p style="font-weight: bold;font-size: 2.5em">{{ medor }}</p>
+                                        </div>
+                                        <div style="display: flex;flex-direction:row;justify-content: center;width: 300px;justify-items: center;align-items: center">
 
-				</div>
-			</div>
-		</div>
-	</div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"><path fill="silver" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176s176-78.8 176-176s-78.8-176-176-176zm92.52 157.26l-37.93 36.96l8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22l-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64l23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39c4.11 0 8.22 2.14 10.33 6.39l23.43 47.52l52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"/></svg>
+                                            <p style="font-weight: bold;font-size: 2.5em">{{ medsilver }}</p>
+                                        </div>
+                                        <div style="display: flex;flex-direction:row;justify-content: center;width: 300px;justify-items: center;align-items: center">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"><path fill="#cd7f32" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176s176-78.8 176-176s-78.8-176-176-176zm92.52 157.26l-37.93 36.96l8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22l-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64l23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39c4.11 0 8.22 2.14 10.33 6.39l23.43 47.52l52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"/></svg>
+                                            <p style="font-weight: bold;font-size: 2.5em">{{ medbronze }}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+	    </div>
     </div>
 
     

@@ -96,6 +96,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'consultant', targetEntity: Mission::class)]
     private Collection $missionsDev;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imgUrl = null;
+
     public function __construct()
     {
         $this->testResults = new ArrayCollection();
@@ -499,6 +502,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $missionsDev->setConsultant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImgUrl(): ?string
+    {
+        return $this->imgUrl;
+    }
+
+    public function setImgUrl(?string $imgUrl): self
+    {
+        $this->imgUrl = $imgUrl;
 
         return $this;
     }
