@@ -18,3 +18,10 @@ docker compose exec php bin/console d:s:u --dump-sql
 # Env DB
 
 DATABASE_URL="postgresql://postgres:password@db:5432/db?serverVersion=13&charset=utf8"
+
+## Contributors
+
+* **Chaochao ZHOU** - [Chaochao-z](https://github.com/Chaochao-z)
+* **Mustapha BOUKHATEM** - [Mousse57](https://github.com/Mousse57)
+* **Cornelius Jugal MBOUOPDA NDEFFO** - [corneliusthefirst](https://github.com/corneliusthefirst)
+* **Ronan Trouillard** - [ronantr](https://github.com/ronantr)
