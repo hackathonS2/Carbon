@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% block head %}
+			{% include('operationnel/global/head.html.twig') %}
+		{% endblock %}
+	</head>
+	<body>
+
+		<!-- begin app -->
+		<div class="flex flex-col bg-white text-black">
+			{% block header %}
+				{% include('navbar/navbar.html.twig') %}
+			{% endblock %}
+				{% block body %}{% endblock %}
+			<!-- end app-wrap -->
+			{% block footer %}
+				{% include('operationnel/global/footer.html.twig') %}
+			{% endblock %}
+		</div>
+	</body>
+</html>

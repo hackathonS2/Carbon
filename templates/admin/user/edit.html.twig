@@ -1,0 +1,105 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}User Edit {{ user.nom }}{% endblock %}
+
+
+{% block main %}
+
+
+            <div style="border-radius: 20px;width: 1000px;margin: auto;background-color: white">
+                {% set ramdonNumber = random(1,17) %}
+                <div style="height: 300px;background-color: #5B98D2;border-radius: 20px;display: flex; justify-content: center; align-items: center; text-align: center;background-image:url('{{ asset('images/lol/large/' ~ ramdonNumber ~'.png') }}');background-size: cover;">
+                    <h1 style="font-size: 4em;color: white;-webkit-text-stroke: 2px red;">
+                        {% if user.roles[0] == "ROLE_ADMIN" %}
+                            ADMIN
+                        {% elseif user.roles[0] == "ROLE_OPERATIONNEL" %}
+                            OPERATIONNEL
+                        {% elseif user.roles[0] == "ROLE_CONSULTANT" %}
+                            CONSULTANT
+                        {% endif %}
+                    </h1>
+                </div>
+                <div style="display: flex;justify-content: space-between;">
+                    <div style="position: relative; top: -75px;left: 75px;width: 150px">
+                        <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" width="150px">
+                    </div>
+                    <div style="display: flex;flex-wrap: wrap;gap: 5px;width: 300px;padding-top: 8px;">
+                        {% for softskill in user.softSkills %}
+                            <p style="border-radius: 20px;border: 1px solid #5B98D2;padding: 5px" > {{ softskill.nom }} </p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div style="padding: 0 20px 20px 20px">
+                    <h1 style="font-weight: bold;font-size: 1.4em;position: relative;top: -40px;">{{ user.nom|capitalize }} {{ user.prenom|capitalize }}</h1>
+                </div>
+                <h1 style="font-weight: bold;font-size: 1.8em;position: relative;top: -40px;text-align: center;">Modification</h1>
+
+                {{ form_start(form) }}
+                <div style="display: flex;justify-content: space-evenly;">
+
+
+                    <div style="width: 40%">
+                        <div class ="form__group field">
+                            {{ form_widget(form.roles, { 'attr': {'class': 'form__field', 'id' : 'inputRoles',  'placeholder':'Roles'}})}}
+                            {{ form_label(form.roles, 'roles', {'label_attr': {'class': 'form__label', 'for':'inputRoles'}}) }}
+                        </div>
+                        <div class ="form__group field">
+                            {{ form_widget(form.nom, { 'attr': {'class': 'form__field', 'id' : 'inputNom',  'placeholder':'Nom'}})}}
+                            {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form__label', 'for':'inputNom'}}) }}
+                        </div>
+                        <div class ="form__group field">
+                            {{ form_widget(form.prenom, { 'attr': {'class': 'form__field', 'id' : 'inputPrenom',  'placeholder':'Prénom'}})}}
+                            {{ form_label(form.prenom, 'Prénom', {'label_attr': {'class': 'form__label', 'for':'inputPrenom'}}) }}
+                        </div>
+                        <div class ="form__group field">
+                            {{ form_widget(form.dateDeNaissance, { 'attr': {'class': 'form__field', 'id' : 'inputDateDeNaissance',  'placeholder':'Date De Naissance'}})}}
+                            {{ form_label(form.dateDeNaissance, 'Date De Naissance', {'label_attr': {'class': 'form__label', 'for':'inputDateDeNaissance'}}) }}
+                        </div>
+                        <div class ="form__group field">
+                            {{ form_widget(form.adresse, { 'attr': {'class': 'form__field', 'id' : 'inputAdresse',  'placeholder':'Adresse'}})}}
+                            {{ form_label(form.adresse, 'Adresse', {'label_attr': {'class': 'form__label', 'for':'inputAdresse'}}) }}
+                        </div>
+                        <div class ="form__group field">
+                            {{ form_widget(form.tel, { 'attr': {'class': 'form__field', 'id' : 'inputTel',  'placeholder':'Munéro de téléphone'}})}}
+                            {{ form_label(form.tel, 'Mobile', {'label_attr': {'class': 'form__label', 'for':'inputTel'}}) }}
+                        </div>
+                        <div class ="form__group field">
+                            {{ form_widget(form.evalClientDev, { 'attr': {'class': 'form__field', 'id' : 'inputevalClientDev',  'placeholder':'Evaluation Client Dev'}})}}
+                            {{ form_label(form.evalClientDev, 'Objectif Mensuel Commercial', {'label_attr': {'class': 'form__label', 'for':'inputevalClientDev'}}) }}
+                        </div>
+                    </div>
+                    <div style="width: 40%">
+                        <div class ="form__group field">
+                            {{ form_widget(form.description, { 'attr': {'class': 'form__field', 'id' : 'inputDescription',  'placeholder':'Description'}})}}
+                            {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form__label', 'for':'inputDescription'}}) }}
+                        </div>
+                        <div class ="form__group field">
+                            {{ form_widget(form.salaireSouhaite, { 'attr': {'class': 'form__field', 'id' : 'inputSalaireSouhaite',  'placeholder':'Salaire Souhaite'}})}}
+                            {{ form_label(form.salaireSouhaite, 'Salaire Souhaite', {'label_attr': {'class': 'form__label', 'for':'inputSalaireSouhaite'}}) }}
+                        </div>
+                        <div class ="form__group field">
+                            {{ form_widget(form.evalClient, { 'attr': {'class': 'form__field', 'id' : 'inputEvalClient',  'placeholder':'EvalClient'}})}}
+                            {{ form_label(form.evalClient, 'EvalClient', {'label_attr': {'class': 'form__label', 'for':'inputEvalClient'}}) }}
+                        </div>
+                        <div class ="form__group field">
+                            {{ form_widget(form.linkLinkedin, { 'attr': {'class': 'form__field', 'id' : 'inputLinkLinkedin',  'placeholder':'Link Linkedin'}})}}
+                            {{ form_label(form.linkLinkedin, 'LinkLinkedin', {'label_attr': {'class': 'form__label', 'for':'inputLinkLinkedin'}}) }}
+                        </div>
+                        <div class ="form__group field">
+                            {{ form_widget(form.linkSlack, { 'attr': {'class': 'form__field', 'id' : 'inputlinkSlack',  'placeholder':'LinkSlack'}})}}
+                            {{ form_label(form.linkSlack, 'LinkSlack', {'label_attr': {'class': 'form__label', 'for':'inputlinkSlack'}}) }}
+                        </div>
+                        <div class ="form__group field">
+                            {{ form_widget(form.objectifMensuelCommercial, { 'attr': {'class': 'form__field', 'id' : 'inputobjectifMensuelCommercial',  'placeholder':'Objectif Mensuel Commercial'}})}}
+                            {{ form_label(form.objectifMensuelCommercial, 'Objectif Mensuel Commercial', {'label_attr': {'class': 'form__label', 'for':'inputobjectifMensuelCommercial'}}) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center m-8" >
+                    <button class="btn cta red-button">{{ button_label|default('Save') }}</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+
+{% endblock %}

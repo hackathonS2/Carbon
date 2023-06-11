@@ -1,0 +1,250 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Note Client index
+{% endblock %}
+
+{% block body %}
+	<div class="shadow fixed w-full z-30 flex bg-white  p-2 items-center justify-center h-16 px-10">
+		<div class="logo ml-12 text-black  transform ease-in-out duration-500 flex-none h-full flex items-center justify-center">
+			<b class="text-black">Carbon</b>
+		</div>
+		<!-- SPACER -->
+		<div class="grow h-full flex items-center justify-center"></div>
+		<div class="flex-none h-full text-center flex items-center justify-center">
+
+			<div class="flex space-x-3 items-center px-3">
+				<div class="flex-none flex justify-center">
+					<div class="w-8 h-8 flex ">
+						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShta_GXR2xdnsxSzj_GTcJHcNykjVKrCBrZ9qouUl0usuJWG2Rpr_PbTDu3sA9auNUH64&usqp=CAU" alt="profile" class="shadow rounded-full object-cover"/>
+					</div>
+				</div>
+
+				<div class="hidden md:block text-sm md:text-md text-black dark:text-white">{{ app.user.nom }}</div>
+			</div>
+
+		</div>
+	</div>
+	<aside
+		class="w-60 -translate-x-48 fixed transition transform ease-in-out duration-1000 z-50 flex h-screen bg-[#282B2A] ">
+		<!-- open sidebar button -->
+		<div class="max-toolbar translate-x-24 scale-x-0 w-full -right-6 transition transform ease-in duration-300 flex items-center justify-between  dark:border-[#0F172A] bg-[#282B2A]  absolute top-2 rounded-full h-12">
+
+			<div class="flex pl-4 items-center space-x-2 ">
+				<div></div>
+
+			</div>
+			<div class="flex items-center space-x-3 group bg-gradient-to-r dark:from-cyan-500 dark:to-blue-500 from-indigo-500   pl-10 pr-2 py-1 rounded-full text-white  "></div>
+		</div>
+		<div onclick="openNav()" class="-right-6 transition transform ease-in-out duration-500 flex border-4 border-white dark:border-[#0F172A] bg-[#282B2A] dark:hover:bg-blue-500  absolute top-2 p-3 rounded-full text-white hover:rotate-45">
+			<img src="{{ asset('/images/Logo.png') }}" fill="none" viewbox="0 0 24 24" strokewidth={3} stroke="currentColor" class="w-4 h-4">
+			<path strokelinecap="round" strokelinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/>
+		</img>
+	</div>
+	<!-- MAX SIDEBAR-->
+	<div class="max hidden text-white mt-20 flex-col space-y-2 w-full h-[calc(100vh)]">
+		<div class="hover:ml-4 w-full text-white  dark:hover:text-blue-500 bg-[#282B2A] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" strokewidth={1.5} stroke="currentColor" class="w-4 h-4">
+				<path strokelinecap="round" strokelinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+			</svg>
+			<div>
+				<a href="/">
+					Home</a>
+			</div>
+		</div>
+		<div class="hover:ml-4 w-full text-white dark:hover:text-blue-500 bg-[#282B2A] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"/>
+			</svg>
+			<div>
+				{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
+					<a href="{{ path('admin_profil') }}">
+						Mon profil
+					</a>
+				{% endif %}
+				{% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+					<a href="{{ path('operationnel_profil') }}">
+						Mon profil
+					</a>
+
+				{% endif %}
+			</div>
+		</div>
+		<div class="hover:ml-4 w-full text-white dark:hover:text-blue-500 bg-[#282B2A] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+
+			<div>
+				<a href="/logout" style="color:#E53F49">Se déconnecter</a>
+			</div>
+		</div>
+	</div>
+	<!-- MINI SIDEBAR-->
+	<div class="mini mt-20 flex flex-col space-y-2 w-full h-[calc(100vh)]">
+		<div class="hover:ml-4 justify-end pr-5 text-white ark:hover:text-blue-500 w-full bg-[#282B2A] p-3 rounded-full transform ease-in-out duration-300 flex">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" strokewidth={1.5} stroke="currentColor" class="w-4 h-4">
+				<path strokelinecap="round" strokelinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+			</svg>
+		</div>
+		<div class="hover:ml-4 justify-end pr-5 text-white dark:hover:text-blue-500 w-full bg-[#282B2A] p-3 rounded-full transform ease-in-out duration-300 flex">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"/>
+			</svg>
+		</div>
+		<div class="hover:ml-4 justify-end pr-5 text-white dark:hover:text-blue-500 w-full bg-[#282B2A] p-3 rounded-full transform ease-in-out duration-300 flex">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"/>
+				<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"/>
+			</svg>
+		</div>
+	</div>
+
+</aside>
+
+<!-- MAIN CONTENT -->
+<div class="overflow-y-scroll  content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 ">
+
+	<div class="bg-white p-8 rounded-md w-full h-screen">
+
+		<div>
+			<h2 class="font-bold text-xl my-6 text-black">Veuillez Ajouter Votre Feedback</h2>
+
+			<li class="flex flex-col mb-8 shadow-md p-8 mb-8">
+				<div class="flex flex-col justify-between w-full">
+
+					<div class="flex flex-row justify-between mb-4">
+						<h2 class="font-bold text-black">{{ mission.nom }}</h2>
+						<div class="flex flex-row">
+							<p class="text-sm text-blue-400 mr-8">Start Date:
+								{{ mission.dateDebut|date('d-m-Y') }}</p>
+							<p class="text-sm text-blue-400">End Date:
+								{{ mission.dateFin|date('d-m-Y') }}</p>
+						</div>
+					</div>
+
+					<div class="flex w-full text-black">
+						<p>
+							{{ mission.description }}
+						</p>
+					</div>
+
+
+					{% if mission.note %}
+						<div class="flex flex-row w-full items-start pt-8">
+							<div class="flex flex-row items-center">
+								<p class="text-lg text-black">Note Moyenne Actuel:</p>
+								<ul class="flex pl-4">
+									{% for i in 1..5 %}
+										{% if i <=  mission.note %}
+											<li>
+												<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-5 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 576 512">
+													<path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+												</svg>
+											</li>
+										{% else %}
+											<li>
+												<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-5 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 576 512">
+													<path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+												</svg>
+											</li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					{% endif %}
+
+
+					<!-- set if missions ongoings or ended based on period-->
+					<div class="flex flex-row w-full justify-between pt-8">
+						<div class="flex flex-col items-end">
+							{% if mission.dateFin > 'now' %}
+								<p class="text-sm text-green-400">ONGOING</p>
+							{% else %}
+								<p class="text-sm text-red-400">ENDED</p>
+							{% endif %}
+						</div>
+					</div>
+
+				</li>
+
+				<form name="commentForm" method="post" action="{{ path('form_feeback_client', {'id': mission.id}) }}">
+					<div class="flex flex-row w-full space-x-8">
+						<div class="w-full flex flex-col">
+
+							<div class="flex flex-row  w-full justify-between my-2">
+								<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="user_comment">
+									Commentaire
+								</label>
+
+
+								<div class="">
+									<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="rating">
+										Note sur 5 (1-5)
+									</label>
+									<div class="rating">
+										<div class="rating">
+											<i class="rating__star far fa-star"></i>
+											<i class="rating__star far fa-star"></i>
+											<i class="rating__star far fa-star"></i>
+											<i class="rating__star far fa-star"></i>
+											<i class="rating__star far fa-star"></i>
+										</div>
+										<input type="hidden" name="mission_note" value="{{ mission.note }}" id="mission_note">
+										<input type="hidden" name="my_note" value="{{ mission.note }}" id="my_note"></div>
+								</div>
+							</div>
+							<textarea type="text" name="user_comment" class="w-full textarea bg-gray-100 text-gray-400 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-400" rows="6" placeholder="Votre commentaire..."></textarea>
+						</div>
+
+					</div>
+					<div>
+						<input type="hidden" name="mission_id" value="{{ mission.id }}"></div>
+					<button type="submit" class=" my-4 bg-red-600 px-4 py-2 rounded-lg text-white text-sm hover:bg-red-700">Soumettre votre feedback</button>
+				</form>
+			</li>
+		</div>
+
+
+	</div>
+</div>
+<script>
+
+
+	const ratingStars = [...document.getElementsByClassName("rating__star")];
+
+function executeRating(stars) {
+const starClassActive = "rating__star fas fa-star text-yellow-400";
+const starClassInactive = "rating__star far fa-star";
+const starsLength = stars.length;
+let i;
+stars.map((star) => {
+star.onclick = () => {
+i = stars.indexOf(star);
+
+if (star.className === starClassInactive) {
+for (i; i >= 0; -- i) 
+stars[i].className = starClassActive;
+
+
+
+} else {
+for (i; i < starsLength; ++ i) 
+stars[i].className = starClassInactive;
+
+
+}
+document.getElementById("mission_note").value = [...document.getElementsByClassName("rating__star fas fa-star text-yellow-400")].length;
+};
+});
+
+const note = parseInt(document.getElementById("mission_note").value)
+
+if (note > 0) {
+console.log(note)
+for (i = 0; i < note; ++ i) 
+stars[i].className = starClassActive;
+
+
+}
+}
+executeRating(ratingStars);
+</script>{% endblock %}

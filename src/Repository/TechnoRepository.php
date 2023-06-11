@@ -39,6 +39,15 @@ class TechnoRepository extends ServiceEntityRepository
         }
     }
 
+    /**find all technos */
+    public function findAll(): array
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Techno[] Returns an array of Techno objects
 //     */

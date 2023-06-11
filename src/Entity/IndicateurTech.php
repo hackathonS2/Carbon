@@ -16,11 +16,11 @@ class IndicateurTech
     #[ORM\Column(nullable: true)]
     private ?int $evaluationGlobalTech = null;
 
-    #[ORM\ManyToOne(inversedBy: 'indicateurTeches')]
+    #[ORM\ManyToOne(inversedBy: 'indicateurTechs')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Techno $idTechno = null;
 
-    #[ORM\ManyToOne(inversedBy: 'indicateurTeches')]
+    #[ORM\ManyToOne(inversedBy: 'indicateurTechs')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $idUser = null;
 

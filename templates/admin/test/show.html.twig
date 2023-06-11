@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test{% endblock %}
+
+{% block body %}
+<div class="flex items-center justify-center h-screen w-1/2 mx-auto  min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-white" >
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="m-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 text-black">Test</h2>
+</div>
+
+    <table class="table text-left">
+        <tbody >
+            <tr >
+                <th>Id</th>
+                <td>{{ test.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ test.nom }}</td>
+            </tr>
+            <tr>
+                <th>Difficulte</th>
+                <td>{{ test.difficulte }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>
+                  	{% if test.actif %}
+                                        <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+									<span class="relative">Actif</span>
+									</span>
+                                        {% else %}
+                                        <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+									<span class="relative">Innactif</span>
+									</span>
+                                        {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    Formation / Techno
+                </th>
+                <td>
+                    {{ test.idTechno.nom }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    {{ include('admin/test/_delete_form.html.twig') }}
+ {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+             <a href="{{ path('app_operationnel_test_index') }}" class="font-semibold m-10 text-indigo-600 hover:text-indigo-500 redlink ">Retourner à la liste</a>
+
+{% endif %}
+
+ {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+             <a href="{{ path('app_admin_test_index') }}" class="font-semibold m-10 text-indigo-600 hover:text-indigo-500 redlink ">Retourner à la liste</a>
+
+{% endif %}
+    </div>
+{% endblock %}

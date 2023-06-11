@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>IsVerified</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>DateDeNaissance</th>
+                <th>MailVerifyToken</th>
+                <th>MailVerifyTokenExp</th>
+                <th>Adresse</th>
+                <th>Tel</th>
+                <th>Description</th>
+                <th>SalaireSouhaite</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>EvalClient</th>
+                <th>LinkLinkedin</th>
+                <th>LinkSlack</th>
+                <th>EvalClientDev</th>
+                <th>ObjectifMensuelCommercial</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.dateDeNaissance ? user.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ user.mailVerifyToken }}</td>
+                <td>{{ user.mailVerifyTokenExp ? user.mailVerifyTokenExp|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.adresse }}</td>
+                <td>{{ user.tel }}</td>
+                <td>{{ user.description }}</td>
+                <td>{{ user.salaireSouhaite }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.evalClient }}</td>
+                <td>{{ user.linkLinkedin }}</td>
+                <td>{{ user.linkSlack }}</td>
+                <td>{{ user.evalClientDev }}</td>
+                <td>{{ user.objectifMensuelCommercial }}</td>
+                <td>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                    {# <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a> #}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="22">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_new') }}">Create new</a>
+{% endblock %}

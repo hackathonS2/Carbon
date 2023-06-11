@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TestResults{% endblock %}
+
+{% block body %}
+    <h1>Edit TestResults</h1>
+
+    {{ include('admin/test_results/_form.html.twig', {'button_label': 'Update'}) }}
+ {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
+    <a href="{{ path('app_admin_test_results_index') }}">back to list</a>
+
+{% endif %}
+ {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+    <a href="{{ path('app_operationnel_test_results_index') }}">back to list</a>
+
+{% endif %}
+
+    {{ include('admin/test_results/_delete_form.html.twig') }}
+{% endblock %}
+

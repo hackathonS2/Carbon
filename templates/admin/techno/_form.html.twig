@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+    <div class ="form__group field">
+        {{ form_widget(form.nom, { 'attr': {'class': 'form__field', 'id' : 'inputNom',  'placeholder':'Nom'}})}}
+        {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form__label', 'for':'inputNom'}}) }}
+    </div>
+    <div class ="form__group field">
+        {{ form_widget(form.description, { 'attr': {'class': 'form__field', 'id' : 'inputDescription',  'placeholder':'Description'}})}}
+        {{ form_label(form.description, 'description', {'label_attr': {'class': 'form__label', 'for':'inputDescription'}}) }}
+    </div>
+    <div class ="form__group field">
+        {{ form_widget(form.urlFormation, { 'attr': {'class': 'form__field', 'id' : 'inputurl',  'placeholder':'urlFormation'}})}}
+        {{ form_label(form.urlFormation, 'urlFormation', {'label_attr': {'class': 'form__label', 'for':'inputurl'}}) }}
+    </div>
+    <div class="flex items-center justify-center m-8">
+        <button class="btn cta red-button">{{ button_label|default('Save') }}</button>
+    </div>
+
+{{ form_end(form) }}

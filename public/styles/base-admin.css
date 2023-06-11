@@ -1,0 +1,60 @@
+
+body {
+    background-color: white ;
+}
+
+
+.admin-main-section{
+    overflow-y: scroll;padding: 40px; max-height: 100vh;width: 100%;background-color: #f4f5f7
+}
+
+.admin-header-filtre a{
+    text-decoration: none;
+    color: #9b9b9b;
+    margin: 10px;
+    font-weight: 500;
+}
+
+.admin-header-filtre{
+    padding-bottom: 8px;
+    margin-left: 10px;
+}
+
+.admin-header-filtre-status{
+    display: flex;
+    align-items: center;
+}
+
+.admin-svg-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.admin-table-list-header{
+
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.admin-table-list{
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.gamified-button {
+    background-color: #5B98D2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -2px rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+.gamified-button:hover {
+    background-color: #4682B4;
+}

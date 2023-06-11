@@ -1,0 +1,154 @@
+<!-- component -->
+<!-- This is an example component -->
+	<h1 class="mx-auto text-center font-bold m-5">Rechercher des utilisateurs</h1>
+     <div class="pt-2 relative mx-auto text-gray-600">
+         <form action="{{ path('consultant_home') }}" method="get">
+          <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+            type="text" name="q" placeholder="Search" value="{{ app.request.query.get('q') }}">
+          <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+            <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+              viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
+              width="512px" height="512px">
+              <path
+                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+            </svg>
+          </button>
+          </form>
+      </div>
+
+    <div class = "content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 " style="background-color: #f9f8fd;">
+
+        <div class="bg-white p-8 rounded-md w-full" style="background-color: #f9f8fd;">
+            <div class=" flex items-center justify-between pb-6">
+                <div style="display:flex; flex-wrap: wrap; gap: 10px;justify-content: center;">
+                    {% if users is empty %}
+        <p>No users found.</p>
+    {% else %}
+
+                    {% for user in users %}
+                        {% set ramdonNumber = random(1,17) %}
+
+                        <div style="width: 400px;box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);border-radius: 20px;">
+                            <div style="height: 200px;background-color: #5B98D2; background-image:url('{{ asset('images/lol/' ~ ramdonNumber ~'.png') }}');background-size: cover;border-radius: 20px;"> </div>
+                            {% if user.imgUrl != null %}
+                                <img src="{{ user.imgUrl }}" width="100px" style="margin: auto;position:relative;top: -50px">
+                            {% else %}
+                                <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" width="100px" style="margin: auto;position:relative;top: -50px">
+                            {% endif %}
+                            <div style="padding: 10px">
+                               <a href="{{ path('app_consultant_user', {'id': user.id})}}" class=""> <h1 style="font-weight: bold;font-size: 1.4em;position: relative;top: -40px;">{{ user.nom|capitalize }} {{ user.prenom|capitalize }}</h1></a>
+                                <h2 style="font-size: 1.2em;font-weight: 500;">Soft Skills : </h2>
+                                <div style="height: 120px;">
+                                    <div style="display: flex;flex-wrap: wrap;gap: 5px;">
+                                        {% for softskill in user.softSkills %}
+                                            <p style="border-radius: 20px;border: 1px solid #5B98D2;padding: 5px" > {{ softskill.nom }} </p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <h2 style="font-size: 1.2em;font-weight: 500;margin-top: 20px;">Hard Skills : </h2>
+                                {% set medor = 0 %}
+                                {% set medsilver = 0 %}
+                                {% set medbronze = 0 %}
+                                {% for testresult in user.testResults %}
+                                    {% if testresult.result >=60 %}
+                                        {% if testresult.idTest.difficulte == 1 %}
+                                            {% set medbronze = medbronze +1 %}
+                                        {% elseif testresult.idTest.difficulte == 2 %}
+                                            {% set medsilver = medbronze +1 %}
+                                        {% elseif testresult.idTest.difficulte == 3 %}
+                                            {% set medor = medbronze +1 %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                <div style="border-radius: 20px;width: 100%;margin: auto;background-color: white;margin-top: 50px;padding:20px">
+                                    <div style="display: flex;justify-content: space-evenly">
+                                        <div style="display: flex;flex-direction:row;justify-content: center;width: 300px;justify-items: center;align-items: center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"><path fill="#f2d350" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176s176-78.8 176-176s-78.8-176-176-176zm92.52 157.26l-37.93 36.96l8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22l-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64l23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39c4.11 0 8.22 2.14 10.33 6.39l23.43 47.52l52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"/></svg>
+
+                                            <p style="font-weight: bold;font-size: 2.5em">{{ medor }}</p>
+                                        </div>
+                                        <div style="display: flex;flex-direction:row;justify-content: center;width: 300px;justify-items: center;align-items: center">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"><path fill="silver" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176s176-78.8 176-176s-78.8-176-176-176zm92.52 157.26l-37.93 36.96l8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22l-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64l23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39c4.11 0 8.22 2.14 10.33 6.39l23.43 47.52l52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"/></svg>
+                                            <p style="font-weight: bold;font-size: 2.5em">{{ medsilver }}</p>
+                                        </div>
+                                        <div style="display: flex;flex-direction:row;justify-content: center;width: 300px;justify-items: center;align-items: center">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"><path fill="#cd7f32" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176s176-78.8 176-176s-78.8-176-176-176zm92.52 157.26l-37.93 36.96l8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22l-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64l23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39c4.11 0 8.22 2.14 10.33 6.39l23.43 47.52l52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"/></svg>
+                                            <p style="font-weight: bold;font-size: 2.5em">{{ medbronze }}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+	    </div>
+    </div>
+
+    
+    <script>
+        const sidebar = document.querySelector("aside");
+        const maxSidebar = document.querySelector(".max")
+        const miniSidebar = document.querySelector(".mini")
+        const roundout = document.querySelector(".roundout")
+        const maxToolbar = document.querySelector(".max-toolbar")
+        const logo = document.querySelector('.logo')
+        const content = document.querySelector('.content')
+        const moon = document.querySelector(".moon")
+        const sun = document.querySelector(".sun")
+
+        function setDark(val){
+            if(val === "dark"){
+                document.documentElement.classList.add('dark')
+                moon.classList.add("hidden")
+                sun.classList.remove("hidden")
+            }else{
+                document.documentElement.classList.remove('dark')
+                sun.classList.add("hidden")
+                moon.classList.remove("hidden")
+            }
+        }
+
+        function openNav() {
+            if(sidebar.classList.contains('-translate-x-48')){
+                // max sidebar 
+                sidebar.classList.remove("-translate-x-48")
+                sidebar.classList.add("translate-x-none")
+                maxSidebar.classList.remove("hidden")
+                maxSidebar.classList.add("flex")
+                miniSidebar.classList.remove("flex")
+                miniSidebar.classList.add("hidden")
+                maxToolbar.classList.add("translate-x-0")
+                maxToolbar.classList.remove("translate-x-24","scale-x-0")
+                logo.classList.remove("ml-12")
+                content.classList.remove("ml-12")
+                content.classList.add("ml-12","md:ml-60")
+            }else{
+                // mini sidebar
+                sidebar.classList.add("-translate-x-48")
+                sidebar.classList.remove("translate-x-none")
+                maxSidebar.classList.add("hidden")
+                maxSidebar.classList.remove("flex")
+                miniSidebar.classList.add("flex")
+                miniSidebar.classList.remove("hidden")
+                maxToolbar.classList.add("translate-x-24","scale-x-0")
+                maxToolbar.classList.remove("translate-x-0")
+                logo.classList.add('ml-12')
+                content.classList.remove("ml-12","md:ml-60")
+                content.classList.add("ml-12")
+
+            }
+
+        }
+    </script>
+
+
+
+    
+

@@ -1,21 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
+<div class="flex w-1/2 mx-auto  min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-white" >
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
 
-    <h1>Register</h1>
+    <div>
+        <img class="mx-auto h-40 " src="{{ asset('images/LogoClientGris.png') }}" alt="Logo Carbon">
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 text-black">Inscription</h2>
+    </div>
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.email, { 'attr': {'class': 'form__field', 'id' : 'inputEmail', 'type' : 'email', 'placeholder':'Email'}})}}
+          {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'form__label', 'for':'inputEmail'}}) }}
+        </div>
+        
+         <div class ="form__group field">
+          {{ form_widget(registrationForm.nom, { 'attr': {'class': 'form__field', 'id' : 'inputNom', 'type' : 'text', 'placeholder':'Nom'}})}}
+          {{ form_label(registrationForm.nom, 'Nom', {'label_attr': {'class': 'form__label', 'for':'inputNom'}}) }}
+        </div>
+        
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.prenom, { 'attr': {'class': 'form__field', 'id' : 'inputPrenom', 'type' : 'prenom', 'placeholder':'Prenom'}})}}
+          {{ form_label(registrationForm.prenom, 'Prénom', {'label_attr': {'class': 'form__label', 'for':'inputPrenom'}}) }}
+        </div>
+        
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.dateDeNaissance, { 'attr': {'class': 'form__field', 'id' : 'inputEmail' ,'placeholder':'Date de naissance', 'style' :'border-bottom:0px'}})}}
+          {{ form_label(registrationForm.dateDeNaissance, 'Date de naissance', {'label_attr': {'class': 'form__label', 'for':'inputDateDeNaissance'}}) }}
+        </div>
+        
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.adresse, { 'attr': {'class': 'form__field', 'id' : 'inputAdresse', 'placeholder':'Adresse'}})}}
+          {{ form_label(registrationForm.adresse, 'Adresse', {'label_attr': {'class': 'form__label', 'for':'inputAdresse'}}) }}
+        </div> 
+
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.tel, { 'attr': {'class': 'form__field', 'id' : 'inputTelephone', 'placeholder':'Téléphone'}})}}
+          {{ form_label(registrationForm.tel, 'Telephone', {'label_attr': {'class': 'form__label', 'for':'inputTelephone'}}) }}
+        </div>
+
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.description, { 'attr': {'class': 'form__field', 'id' : 'inputDescription', 'placeholder':'Description'}})}}
+          {{ form_label(registrationForm.description, 'Description', {'label_attr': {'class': 'form__label', 'for':'inputDescription'}}) }}
+        </div>
+
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.salaireSouhaite, { 'attr': {'class': 'form__field', 'id' : 'inputSalaireSouhaite','placeholder':'Salaire souhaité'}})}}
+          {{ form_label(registrationForm.salaireSouhaite, 'Salaire souhaité', {'label_attr': {'class': 'form__label', 'for':'inputSalaireSouhaite'}}) }}
+        </div>        
+
+        <div class ="form__group field">
+          {{ form_widget(registrationForm.roles, { 'attr': {'class': 'form__field', 'id' : 'inputRoles', 'placeholder':'Roles'}})}}
+          {{ form_label(registrationForm.roles, 'Roles ', {'label_attr': {'class': 'form__label', 'for':'inputRoles'}}) }}
+        </div>
+
+        {{ form_widget(registrationForm.Submit, { 'label': 'Inscription', 'class' : '' }) }}
     {{ form_end(registrationForm) }}
+    </div>
+</div>
 {% endblock %}

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\TechnoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TechnoRepository::class)]
@@ -18,16 +19,23 @@ class Techno
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'idTechno', targetEntity: Test::class)]
+    #[ORM\OneToMany(mappedBy: 'idTechno', targetEntity: Test::class,cascade: ['persist', 'remove'])]
     private Collection $tests;
 
-    #[ORM\OneToMany(mappedBy: 'idTechno', targetEntity: IndicateurTech::class, orphanRemoval: true)]
-    private Collection $indicateurTeches;
+    #[ORM\OneToMany(mappedBy: 'idTechno', targetEntity: IndicateurTech::class, orphanRemoval: true , )]
+    private Collection $indicateurTechs;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $urlFormation = null;
+
 
     public function __construct()
     {
         $this->tests = new ArrayCollection();
-        $this->indicateurTeches = new ArrayCollection();
+        $this->indicateurTechs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,15 +88,15 @@ class Techno
     /**
      * @return Collection<int, IndicateurTech>
      */
-    public function getIndicateurTeches(): Collection
+    public function getIndicateurTechs(): Collection
     {
-        return $this->indicateurTeches;
+        return $this->indicateurTechs;
     }
 
     public function addIndicateurTech(IndicateurTech $indicateurTech): self
     {
-        if (!$this->indicateurTeches->contains($indicateurTech)) {
-            $this->indicateurTeches->add($indicateurTech);
+        if (!$this->indicateurTechs->contains($indicateurTech)) {
+            $this->indicateurTechs->add($indicateurTech);
             $indicateurTech->setIdTechno($this);
         }
 
@@ -97,13 +105,37 @@ class Techno
 
     public function removeIndicateurTech(IndicateurTech $indicateurTech): self
     {
-        if ($this->indicateurTeches->removeElement($indicateurTech)) {
+        if ($this->indicateurTechs->removeElement($indicateurTech)) {
             // set the owning side to null (unless already changed)
             if ($indicateurTech->getIdTechno() === $this) {
                 $indicateurTech->setIdTechno(null);
             }
         }
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
+
+    public function getUrlFormation(): ?string
+    {
+        return $this->urlFormation;
+    }
+
+    public function setUrlFormation(string $urlFormation): self
+    {
+        $this->urlFormation = $urlFormation;
+
+        return $this;
+    }
+
 }

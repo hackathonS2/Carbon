@@ -9,12 +9,21 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+    #[Route(path: '/', name: 'home')]
+    public function redirectToLogin(){
+        return $this->redirectToRoute('app_login');
+    }
+
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+         if ($this->getUser()) {
+                if ($this->getUser()->getRoles()[0] == 'ROLE_ADMIN' || $this->getUser()->getRoles()[0] == 'ROLE_OPERATIONNEL') {
+                    return $this->redirectToRoute('admin_home');
+                } else {
+                    return $this->redirectToRoute('consultant_home');
+                }
+         }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

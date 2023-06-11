@@ -20,6 +20,10 @@ class Note
     #[ORM\Column(type: Types::TEXT)]
     private ?string $commentaire = null;
 
+    #[ORM\ManyToOne(inversedBy: 'clientNotes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Mission $mission = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +49,18 @@ class Note
     public function setCommentaire(string $commentaire): self
     {
         $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    public function getMission(): ?Mission
+    {
+        return $this->mission;
+    }
+
+    public function setMission(?Mission $mission): self
+    {
+        $this->mission = $mission;
 
         return $this;
     }

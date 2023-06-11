@@ -1,0 +1,95 @@
+{% extends 'consultant/consultant.html.twig' %}
+
+{% block title %}users index{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" defer>
+const input = document.querySelectorAll('.techno');
+const span = document.querySelectorAll('[data-hardskill]');
+const tr = document.querySelectorAll('tr');
+input.forEach((input) => {
+    input.addEventListener('change', () => {
+      //if no .techno:checked show all
+
+        const checked = document.querySelectorAll('.techno:checked');
+        const checkedValues = Array.from(checked).map((el) => el.value);
+        span.forEach((span) => {
+            if (checkedValues.includes(span.dataset.hardskill)) {
+                span.parentElement.parentElement.style.display = 'table-row';
+            } else {
+                span.parentElement.parentElement.style.display = 'none';
+            }
+        });
+            if (!document.querySelector('.techno:checked')) {
+            tr.forEach((tr) => {
+                tr.style.display = 'table-row';
+            });
+        }
+    });
+});
+</script>
+{% endblock %}
+
+{% block body %}
+<main class="d-flex flex-nowrap">
+<br>
+<br>
+<br>
+  <div class="flex flex-col">
+        </div>
+    <div class="mt-5 justify-content-center text-center">
+    
+        <div>
+            <h1>Liste utilisateurs</h1>
+            <ul class="list-unstyled">
+
+            <table class="table" style="border-spacing: 5px;">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>prenom</th>
+                    <th>email</th>
+                    <td>softSkills</td>
+                    <td>Evaluation Développeur</td>
+                    <td>Evaluation Client</td>
+                    <td>Profil</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr style="border-spacing: 5px;">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.nom }}</td>
+                        <td>{{ user.prenom }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                        {% for softSkill in user.softSkills %} 
+                                {{ softSkill.nom }}
+
+                        {% endfor %}
+                        </td>
+                        <td>{{user.evalClient}}/5</td>
+                        <td>{{user.evalClientDev}}/5</td>
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_OPERATIONNEL') %}
+                            <td><a href="{{ path('app_user_show', {'id': user.id}) }}">Profil</a></td>
+                        {% else %}
+                            <td><a href="{{ path('app_consultant_user', {'id': user.id}) }}">Profil</a></td>
+                        {% endif %}
+
+                        
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            
+        </div>
+
+    </div>
+</main>
+
+{% endblock %}

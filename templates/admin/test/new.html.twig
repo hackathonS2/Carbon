@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Test{% endblock %}
+
+{% block body %}
+<div class="flex items-center justify-center h-screen w-1/2 mx-auto  min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-white" >
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h1 style="font-weight: bold; font-size: 1.3em;">Création nouveau test</h1>
+
+    {{ include('admin/test/_form.html.twig') }}
+ {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
+        <a href="{{ path('app_admin_test_index') }}" class="font-semibold text-indigo-600 hover:text-indigo-500 redlink ">Retourner à la liste</a>
+ {% endif %}
+ {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+         <a href="{{ path('app_operationnel_test_index') }}" class="font-semibold text-indigo-600 hover:text-indigo-500 redlink ">Retourner à la liste</a>
+ {% endif %}
+    
+    </div>
+</div>
+{% endblock %}
