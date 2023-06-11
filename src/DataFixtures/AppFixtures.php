@@ -117,6 +117,7 @@ class AppFixtures extends Fixture
         $user->setTel('0606060606');
         $user->setAdresse($this->faker->address());
         $user->setIsVerified(true);
+        $user->setAvatar("http://i.pravatar.cc/103");
         $entity_manager->persist($user);
         $users[] = $user;
  
@@ -129,6 +130,7 @@ class AppFixtures extends Fixture
         $user->setPrenom('operationnel');
         $user->setTel('0606060606');
         $user->setAdresse($this->faker->address());
+        $user->setAvatar("http://i.pravatar.cc/104");
         $user->setIsVerified(true);
         $entity_manager->persist($user);
         $users[] = $user;
@@ -136,6 +138,11 @@ class AppFixtures extends Fixture
         // create a list of users with ROLE_CONSULTANT
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
+
+
+            $picture = 'http://i.pravatar.cc/';
+            $pictureId = $this->faker->numberBetween(105, 300);
+
             $user->setEmail($this->faker->email());
             $user->setPassword($this->hasher->hashPassword($user, 'consultant'));
             $user->setRoles(['ROLE_CONSULTANT']);
@@ -145,6 +152,7 @@ class AppFixtures extends Fixture
             $user->setTel($this->faker->phoneNumber());
             $user->setAdresse($this->faker->address());
             $user->setDescription($this->faker->text(100));
+            $user->setAvatar($picture . $pictureId);
             $user->setSalaireSouhaite($this->faker->numberBetween(35000, 150000));
             $user->setEvalClient($this->faker->numberBetween(0, 5));
             $user->setEvalClientDev($this->faker->numberBetween(0, 5));
