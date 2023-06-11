@@ -98,6 +98,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $imgUrl = null;
 
     public function __construct()
@@ -514,7 +516,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setAvatar(?string $avatar): self
     {
-    $this->avatar = $avatar;
+        $this->avatar = $avatar;
+        return $this;
     }
 
     public function getImgUrl(): ?string

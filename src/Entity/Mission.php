@@ -31,7 +31,8 @@ class Mission
     #[ORM\Column(length: 255)]
     private ?string $mailClient = null;
 
-    #[ORM\Column]
+
+    #[ORM\Column(nullable: true)]
     private ?int $note = null;
 
     #[ORM\ManyToOne(inversedBy: 'missionsDev')]
