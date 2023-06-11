@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
 
 #[Route('/operationnel')]
 class OperationnelController extends AbstractController
@@ -52,6 +53,15 @@ class OperationnelController extends AbstractController
         return $this->render('admin/global/index.html.twig', [
             'controller_name' => 'HomeController',
             'users' => $users,
+        ]);
+    }
+
+    #[Route('/user/{id}', name: 'app_operationnel_user',methods: ['GET'])]
+    public function consultant_show_user(User $user): Response
+    {
+
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
         ]);
     }
 

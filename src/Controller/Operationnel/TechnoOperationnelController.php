@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/operationnel/techno')]
 class TechnoOperationnelController extends AbstractController
 {
-    #[Route('/', name: 'app_techno_index', methods: ['GET'])]
+    #[Route('/', name: 'app_operationnel_techno_index', methods: ['GET'])]
     public function index(TechnoRepository $technoRepository): Response
     {
         return $this->render('operationnel/techno/index.html.twig', [
@@ -21,7 +21,7 @@ class TechnoOperationnelController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_techno_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_operationnel_techno_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TechnoRepository $technoRepository): Response
     {
         $techno = new Techno();
@@ -40,7 +40,7 @@ class TechnoOperationnelController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_techno_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_operationnel_techno_show', methods: ['GET'])]
     public function show(Techno $techno): Response
     {
         return $this->render('admin/techno/show.html.twig', [

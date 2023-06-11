@@ -6,6 +6,16 @@
 {% block body %}
 	<div class="flex mt-16 consultant-container justify-center">
 		<div class="content w-full">
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success">
+					{{ message }}
+				</div>
+			{% endfor %}
+			{% for message in app.flashes('error') %}
+				<div class="alert alert-error">
+					{{ message }}
+				</div>
+			{% endfor %}
 			<div class="flex flex-col items-center ">
 				<div class="w-full mt-12 mb-8  bg-gray-100 rounded-full">
 					<div class="relative right-0">
@@ -37,7 +47,7 @@
 
                 <div id="Home" class="tabcontent ">
 					<div>
-			    		{% include('searchBar.html.twig') %}
+			    		{# {% include('searchBar.html.twig') %} #}
 					</div>
 				</div>
 
@@ -104,7 +114,7 @@
 									</div>
 								{% else %}
 									<button class="flex flex-row justify-center py-2 rounded-lg border-2 border-green-300 py-2 px-4 mt-12">
-										<a href="" class="text-gray-500 text-sm">Faire Le Test</a>
+										<a href="{{ path("consultant_evaluations",{'id': test.id}) }}" class="text-gray-500 text-sm">Faire Le Test</a>
 									</button>
 								{% endif %}
 

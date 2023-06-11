@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\TechnoRepository;
 use App\Repository\MissionRepository;
+use App\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/consultant')]
 class ConsultantController extends AbstractController
@@ -24,19 +26,32 @@ class ConsultantController extends AbstractController
     }
 
     #[Route('/home', name: 'consultant_home')]
-    public function index_consultant(TechnoRepository $technoRepository, MissionRepository $missionRepository, SoftSkillsRepository $softskillrepo ): Response
+    public function index_consultant(Request $request, TechnoRepository $technoRepository, MissionRepository $missionRepository, SoftSkillsRepository $softskillrepo, UserRepository $userRepo ): Response
     {
         $user_id =  $this->getUser()->getId();
         $mySoftskillrepo = $softskillrepo->findBy(
             ['idUser' => $user_id]
         );
 
+        $searchQuery = $request->query->get('q'); // Récupère le terme de recherche depuis la requête
+        if($searchQuery == null) $searchQuery="";
+
+        $users = $userRepo->searchBy($searchQuery);
 
         return $this->render('consultant/home/index.html.twig', [
             'controller_name' => 'ConsultantController',
             'technos' => $technoRepository->findAll(),
             'missions' => $missionRepository->findByMissionId($user_id),
             'mySoftskills' => $mySoftskillrepo,
+            'users' => $users,
+        ]);
+    }
+
+    #[Route('/mestest', name: 'consultant_mestest')]
+    public function mestest(UserInterface $user)
+    {
+        return $this->render('consultant/mesTests/index.html.twig',[
+            'user' => $user
         ]);
     }
 
@@ -57,6 +72,15 @@ class ConsultantController extends AbstractController
             'controller_name' => 'HomeController',
             'technos' => $technoRepository->findAll(),
             'users' => $users,
+        ]);
+    }
+
+    #[Route('/user/{id}', name: 'app_consultant_user',methods: ['GET'])]
+    public function consultant_show_user(User $user): Response
+    {
+
+        return $this->render('consultant/user/index.html.twig', [
+            'user' => $user,
         ]);
     }
 
