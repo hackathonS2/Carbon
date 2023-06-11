@@ -93,8 +93,9 @@
 
     <div class="p-8 rounded-md w-full" style="border-radius: 20px;" style="background-color: #f9f8fd">
         <div style="border-radius: 20px;width: 1000px;margin: auto;background-color: white">
-            <div style="height: 300px;background-color: #5B98D2;border-radius: 20px;display: flex; justify-content: center; align-items: center; text-align: center;">
-                <h1 style="font-size: 4em;color: white">
+            {% set ramdonNumber = random(1,17) %}
+            <div style="height: 300px;background-color: #5B98D2;border-radius: 20px;display: flex; justify-content: center; align-items: center; text-align: center;background-image:url('{{ asset('images/lol/large/' ~ ramdonNumber ~'.png') }}');background-size: cover;">
+                <h1 style="font-size: 4em;color: white;-webkit-text-stroke: 2px red;">
                     {% if user.roles[0] == "ROLE_ADMIN" %}
                         ADMIN
                     {% elseif user.roles[0] == "ROLE_OPERATIONNEL" %}
@@ -145,7 +146,7 @@
                     <p>Né : {{ user.dateDeNaissance|date("d-m-Y")  }}</p>
                     <p>{{ user.description }}</p>
                     {% if user.linkLinkedin != null %}
-                        <p>Lien Linkedin: {{ user.linkLinkedin }}/p>
+                        <p>Lien Linkedin: {{ user.linkLinkedin }}</p>
                     {% endif %}
                 </div>
             </div>
@@ -213,6 +214,7 @@
                                 <p>Obtenu: {{ testresult.createdAt|date("d-m-Y") }}</p>
                             </div>
                         </div>
+
                     {% endif %}
                 {% endfor %}
             </div>
