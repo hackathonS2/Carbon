@@ -177,52 +177,6 @@
                 </div>
             </div>
 
-            {% for test in tests %}
-                <div class="d-flex justify-content-around admin-table-list" style="background-color: white;margin:10px 0px;padding: 10px;border-radius: 10px">
-                    <div style="display: flex;align-items: center;gap: 10px; width: 10%">
-                        <p style="margin: 0">
-                            {{ test.id }}
-                        </p>
-                    </div>
-                    <div style="display: flex;align-items: center;gap: 10px;width: 20%">
-                        <p style="margin: 0">{{ test.nom }}</p>
-                    </div>
-                    <div style="display: flex;align-items: center;gap: 10px;width: 15%">
-                        <p style="margin: 0">
-                            {% if test.difficulte == 1 %}
-                                Starter
-                            {% elseif test.difficulte == 2  %}
-                                Intermediate
-                            {% elseif test.difficulte == 3 %}
-                                Expert
-                            {% endif %}</p>
-                    </div>
-                    <div style="display: flex;align-items: center;gap: 10px;width: 15%">
-                        <p style="margin: 0">
-                            {% if test.actif %}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="green" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z"/></svg>
-                            {% else %}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="red" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z"/></svg>
-                            {% endif %}
-                        </p>
-                    </div>
-                    <div style="display: flex;align-items: center;gap: 10px;width: 15%">
-                        <p style="margin: 0">
-                            {{ test.createdAt|date("d-m-Y") }}
-                        </p>
-                    </div>
-                    <div style="display: flex;align-items: center;gap: 10px;width: 15%">
-
-                        <a href="{{ path('app_admin_test_show', {'id': test.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#5b98d2" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg></a>
-                        <a href="{{ path('app_admin_test_edit', {'id': test.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#5b98d2" d="M7.243 17.996H3v-4.242L14.435 2.319a1 1 0 0 1 1.414 0l2.829 2.828a1 1 0 0 1 0 1.414L7.243 17.996Zm-4.243 2h18v2H3v-2Z"/></svg></a>
-                            {{ include('admin/test/_delete_form.html.twig') }}
-                    </div>
-                </div>
-            {% endfor %}
-
-        </div>
-
-    </div>
-</main> #}
+                    {% endif %}
 
 {% endblock %}

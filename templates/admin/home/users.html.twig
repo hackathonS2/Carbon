@@ -88,9 +88,15 @@
                         </p>
                     </div>
                     <div style="display: flex;align-items: center;gap: 10px;width: 15%">
+                                   {% if app.user.roles[0] == 'ROLE_ADMIN' %}
 
                         <a href="{{ path('app_admin_test_show', {'id': test.id}) }}">show</a>
                         <a href="{{ path('app_admin_test_edit', {'id': test.id}) }}">edit</a>
+                        {% endif %}
+                                   {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+                      <a href="{{ path('app_operationnel_test_show', {'id': test.id}) }}">show</a>
+                        <a href="{{ path('app_operationnel_test_edit', {'id': test.id}) }}">edit</a>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
@@ -120,8 +126,15 @@
                 {% endfor %}
                 </tbody>
             </table>
+                                   {% if app.user.roles[0] == 'ROLE_ADMIN' %}
 
             <a href="{{ path('app_admin_test_new') }}">Create new</a>
+            {% endif %}
+                                   {% if app.user.roles[0] == 'ROLE_OPERATIONNEL' %}
+            <a href="{{ path('app_operationnel_test_new') }}">Create new</a>
+
+
+            {% endif %}
         </div>
 
     </div>

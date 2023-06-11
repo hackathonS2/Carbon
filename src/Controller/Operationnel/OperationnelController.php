@@ -1,6 +1,10 @@
 <?php
 
+
 namespace App\Controller\Operationnel;
+
+use App\Entity\Mission;
+
 use App\Repository\RecetteRepository;
 use App\Repository\UserRepository;
 use App\Repository\FavoritesRepository;
@@ -23,16 +27,31 @@ class OperationnelController extends AbstractController
     #[Route('/home', name: 'operationnel_home')]
     public function index_operationnel(): Response
     {
-        return $this->render('operationnel/home/index.html.twig', [
-            'controller_name' => 'OperationnelController',
+        return $this->render('admin/home/index.html.twig', [
+            'controller_name' => 'HomeController',
         ]);
     }
 
     #[Route('/profil', name: 'operationnel_profil')]
     public function profile_operationnel(): Response
     {
-        return $this->render('operationnel/profil/index.html.twig', [
-            'controller_name' => 'OperationnelController',
+        $mission = new Mission();
+
+
+        return $this->render('admin/profil/index.html.twig', [
+            'controller_name' => 'HomeController',
+            'missions' => $mission,
+        ]);
+    }
+
+    #[Route('/users', name: 'operationnel_users')]
+    public function users(UserRepository $userRepository): Response
+    {
+        $users = $userRepository->findAll();
+    
+        return $this->render('admin/global/index.html.twig', [
+            'controller_name' => 'HomeController',
+            'users' => $users,
         ]);
     }
 
