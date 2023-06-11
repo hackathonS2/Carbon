@@ -37,7 +37,7 @@
                                 <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" width="100px" style="margin: auto;position:relative;top: -50px">
                             {% endif %}
                             <div style="padding: 10px">
-                                <h1 style="font-weight: bold;font-size: 1.4em;position: relative;top: -40px;">{{ user.nom|capitalize }} {{ user.prenom|capitalize }}</h1>
+                               <a href="{{ path('app_consultant_user', {'id': user.id})}}" class=""> <h1 style="font-weight: bold;font-size: 1.4em;position: relative;top: -40px;">{{ user.nom|capitalize }} {{ user.prenom|capitalize }}</h1></a>
                                 <h2 style="font-size: 1.2em;font-weight: 500;">Soft Skills : </h2>
                                 <div style="height: 120px;">
                                     <div style="display: flex;flex-wrap: wrap;gap: 5px;">

@@ -65,4 +65,13 @@ class ConsultantController extends AbstractController
         ]);
     }
 
+    #[Route('/user/{id}', name: 'app_consultant_user',methods: ['GET'])]
+    public function consultant_show_user(User $user): Response
+    {
+
+        return $this->render('consultant/user/index.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
 }
